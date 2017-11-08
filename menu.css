@@ -1,0 +1,51 @@
+/*============================================
+menu.css
+Styles for menu screens
+============================================*/
+
+/*--------------------------------------------
+Top/Header Dock
+--------------------------------------------*/
+
+#header-dock {
+	width: 100%;
+	height: 100px;
+	background-color: #eeeeee;
+	position: sticky;
+	margin-bottom: 5px;
+	top: 0;
+}
+
+.title-main {
+	text-align: center;
+}
+
+#button-dock {
+	width: 100%;
+	height: 100px;
+	background-color: #eeeeee;
+	position: fixed;
+	margin: auto;
+	bottom: 0;
+	left: 0;
+}
+
+/*--------------------------------------------
+Bottom/Footer Dock
+--------------------------------------------*/
+
+button {
+	padding: 15px;
+	margin: 15px;
+}
+
+#button-call-for-help {
+	position: absolute;
+	left: 0;
+	bottom: 0;
+}
+#button-pay-for-order {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
