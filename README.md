@@ -18,6 +18,7 @@ Project for HCI Group #20
 - some sort of button to submit order (?)
 	- big button or reminder after timeout
 	- should return to the main menu grid after the order is submitted
+- how to style / make the side order tab look / display
 
 ### Advanced feedback to be considered later
 - editing order from side panel
