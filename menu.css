@@ -13,6 +13,7 @@ html, body {
 	/* 99.7% prevents a random ass horizontal scrollbar.*/
 	width: 99.7%;
 	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 #header-dock {
@@ -57,7 +58,7 @@ h4 {
 
 #menu-items-dock {
 	overflow: auto;
-	height: 85%;
+	height: 84%;
 }
 
 #item-one-dock {
@@ -107,6 +108,10 @@ h4 {
 #item-order-info-block {
 	float: left;
 	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
 }
 
 input, label {
@@ -115,6 +120,8 @@ input, label {
 
 #red-quantity {
 	float: left;
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
 #quantity-value {
@@ -123,12 +130,28 @@ input, label {
 
 #add-quantity {
 	float: left;
+	margin-left: 2px;
+	margin-right: 2px;
 }
 
 #quantity-block {
 	float: left;
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+
+#total {
+	float: left;
+	padding-left: 5px;
 }
 
 #quantity-name {
 	float: left;
+}
+
+#add-to-order-button {
+	width: 100%;
 }
