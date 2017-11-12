@@ -3,10 +3,11 @@
 <head>
 	<title>Entrees</title>
 	<link rel="stylesheet" type="text/css" href="menu.css">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="menu.js"></script>
 </head>
 <body>
 	<div id="header-dock">
-		
 		<div id="title-holder">
 			<h1 id="title-main">Entrees</h1>
 		</div>
@@ -17,14 +18,28 @@
 		</div>
 	</div>
 
-	<div id="menu-items-dock">
+	<div id="navigation-dock">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="menu.html?menu=appetizers">Appetizers</a></li>
+			<li><a href="menu.html?menu=hamburgers">Hamburgers</a></li>
+			<li><a href="menu.html?menu=sandwiches">Sandwiches</a></li>
+			<li><a href="menu.html?menu=sides">Sides</a></li>
+			<li><a href="menu.html?menu=drinks">Drinks</a></li>
+			<li><a href="menu.html?menu=desserts">Desserts</a></li>
+			<li><a href="menu.html?menu=sandwiches">My Order</a></li>
+		</ul>
+	</div>
+
+	<!-- appetizers menu block -->
+	<div class="menu-items-dock" id="appetizers">
 		<div id="expanded-item-dock">
 			<div id="expanded-food-image-dock">
 					<img src="" alt="Food Item Image" id="expanded-food-image">
 			</div>
 
 			<div id="temp-desc">
-				<h4>Food Item Name.........................Price:0.00$ </h4>
+				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p>Description of the item </p>
 				<p>Ingredients: ......... (needs way to be hidden/shown)</p>
 				<p>Allergy Warning(s): ........ (needs way to be hidden/shown)</p>
@@ -257,6 +272,46 @@
 						<button id="add-to-order-button">Add to Order</button>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Hamburgers -->
+	<div class="menu-items-dock" id="hamburgers">
+		<div id="expanded-item-dock">
+			<div id="expanded-food-image-dock">
+					<img src="" alt="Food Item Image" id="expanded-food-image">
+			</div>
+
+			<div id="temp-desc">
+				<h4>Something something hamburger.........................Price:0.00$ </h4>
+				<p>Description of the item </p>
+				<p>Ingredients: ......... (needs way to be hidden/shown)</p>
+				<p>Allergy Warning(s): ........ (needs way to be hidden/shown)</p>
+			</div>
+
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" id="temp-special-instruc-input"></textarea>
+				</div>
+
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity">-</button>
+						<p id="quantity-value">0</p>
+						<button id="add-quantity">+</button>
+					</div>
+
+					<div id="temp-total">
+						<p id="total-display">Total: 0.00$</p>
+					</div>
+
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button">Add to Order</button>
+					</div>
+				</div>				
 			</div>
 		</div>
 	</div>
