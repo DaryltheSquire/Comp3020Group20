@@ -94,7 +94,7 @@ h4 {
 }
 
 #item-one-dock {
-	width: 99%;
+	width: 98%;
 	height: 15%;
 	margin-bottom: 10px;
 	position: relative;
@@ -206,7 +206,7 @@ input, label {
 
 /* Expanded View Items */
 #expanded-item-dock {
-	width: 99%;
+	width: 98%;
 	height: 30%;
 	margin-bottom: 10px;
 }
