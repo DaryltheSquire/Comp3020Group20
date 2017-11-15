@@ -14,12 +14,12 @@ html, body {
 	width: 99.7%;
 	margin-top: 0px;
 	margin-bottom: 0px;
+	font-size: 14px;
 }
 
 #header-dock {
 	width: 100%;
 	height: 10%;
-	background-color: #eeeeee;
 	position: sticky;
 }
 
@@ -68,11 +68,13 @@ li a {
     text-align: center;
     padding: 14px 16px;
 	text-decoration: none;
-	color: black;
+	color: #FFFFFF;
+	background: #000000;
 }
 
 li a:hover {
     background-color: white;
+    color: black;
 }
 
 /*--------------------------------------------
@@ -86,26 +88,31 @@ h4 {
 .menu-items-dock {
 	overflow: auto;
 	height: 82%;
+	width: 80%;
 	display: none;
+	float: left;
 }
 
 #item-one-dock {
-	width: 99%;
-	height: 22%;
-	border: 1px solid black;
-	margin-bottom: 5px;
+	width: 98%;
+	height: 15%;
+	margin-bottom: 10px;
+	position: relative;
+	float: left;
 }
 
 #food-image-dock {
 	float: left;
 	width: 20%;
 	height: 100%;
+	position: relative;
 }
 
 #desc {
 	float: left;
-	height: 100%;
-	width: 30%;
+	height: 90%;
+	width: 25%;
+	position: relative;
 }
 
 #button-expand-dock {
@@ -118,28 +125,32 @@ h4 {
 #button-expand-view {
 	bottom: 0px;
 	position: absolute;
-	margin-bottom: 10px;
+	margin-bottom: 5px;
+	float: left;
 }
 
 #special-instruc-dock {
 	float: left;
-	height: 100%;
+	height: 90%;
 	width: 18%;
+	position: relative;
 }
 
 #special-instruc-input {
 	resize: none;
-	width: 90%;
+	width: 100%;
 	height: 70%;
 }
 
 #item-order-info-block {
 	float: left;
 	height: 100%;
+	width: 30%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	margin-left: 70%;
 }
 
 input, label {
@@ -173,11 +184,11 @@ input, label {
 
 #item-order-info-block {
 	float: left;
-	height: 100%;
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	position: relative;
+	position: absolute;
+	margin-left: 72%;
 }
 
 #total {
@@ -195,10 +206,9 @@ input, label {
 
 /* Expanded View Items */
 #expanded-item-dock {
-	width: 99%;
-	height: 45%;
-	border: 1px solid black;
-	margin-bottom: 5px;
+	width: 98%;
+	height: 30%;
+	margin-bottom: 10px;
 }
 
 #expanded-food-image-dock {
@@ -216,15 +226,14 @@ input, label {
 #order-info-block {
 	float: left;
 	height: 100%;
-	width: 33%;
+	width: 30%;
 }
 
 #temp-total {
-	padding-left: 70px;
-	padding-right: 75px;
 }
 
 #temp-special-instruc-dock {
+	margin-top: 1%;
 	height: 70%;
 	width: 100%;
 }
@@ -232,7 +241,7 @@ input, label {
 #temp-special-instruc-input {
 	resize: none;
 	width: 100%;
-	height: 85%;
+	height: 65%;
 }
 
 #temp-quantity-total-block {
@@ -242,8 +251,47 @@ input, label {
 	align-items: center;
 	justify-content: center;
 	position: relative;
+	height: 24%;
 }
 
+.itemParagraph {
+	margin-bottom: -3%;
+}
+
+/*
+<p id="item-desc-p">Description of the item </p>
+				<p id="item-ingr-p">Ingredients: ......... (needs way to be hidden/shown)</p>
+				<p id="item-allergy-p">*/
+
+/* Side - Current Order */
+
+#side-current-order {
+	width: 15%;
+	height: 75%;
+	margin-left: 2.5%;
+	position: static;
+	float: left;
+}
+
+#side-order-title-block {
+	text-align: center;
+	height: 5%;
+	border-bottom: thick solid;
+	margin-left: 3%;
+	margin-right: 3%;
+}
+
+#side-order-title {
+}
+
+#side-order-items-block {
+	overflow: auto;
+	height: 75%;
+
+	border-bottom: thick solid;
+}
+
+<<<<<<< HEAD
 #toggle-ingredients, #toggle-allergies{
 	background: none;
 	margin: 0px;
@@ -257,3 +305,80 @@ input, label {
 	margin: 0px;
 	padding: 0px;
 }
+=======
+#side-order-item {
+	width: 90%;
+	height: 15%;
+	margin-left: 5%;
+	float: left;
+	border-bottom: thin solid;
+}
+
+#side-order-item-top {
+	height: 75%;
+}
+
+#side-order-item-name {
+	float: left;
+}
+
+#side-order-item-cost {
+	float: right;
+}
+
+#side-order-item-bottom {
+	height: 25%
+}
+
+#side-order-item-desc {
+	font-size: 10px;
+	float: left;
+}
+
+#side-order-total {
+	width: 90%;
+	height: 7%;
+	margin-left: 5%;
+}
+
+#side-order-total-text {
+	float: left;
+
+}
+
+#side-order-total-amount {
+	float: right;
+}
+
+#side-order-buttons-block {
+	float: left;
+	margin-left: 3%;
+}
+
+#side-order-edit-button {
+	float: left;
+}
+
+#side-order-submit-button {
+	float: right;
+}
+
+.darkGreenBackground {
+	background-color: #0A290A;
+	color: #FFFFFF;
+	box-shadow: 10px 10px 5px #333333;
+}
+
+.darkGreenBackground:hover {
+	background-color: #1A391A;
+}
+
+.roundedBorder {
+	border-radius: 20px;	
+}
+
+.brickRedBackground {
+	background-color: #4F4F4F;
+	color: #FFFFFF;
+}
+>>>>>>> origin/master
