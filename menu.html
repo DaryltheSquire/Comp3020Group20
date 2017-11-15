@@ -41,8 +41,18 @@
 			<div id="temp-desc">
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p>Description of the item </p>
-				<p>Ingredients: ......... (needs way to be hidden/shown)</p>
-				<p>Allergy Warning(s): ........ (needs way to be hidden/shown)</p>
+
+				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
+
+				<div id="ingredients-block">
+					<p>some list of ingredients goes here</p>
+				</div>
+
+				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
+
+				<div id="allergies-block">
+						<p>some list of allergies goes here</p>
+				</div>
 			</div>
 
 			<div id="order-info-block">

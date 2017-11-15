@@ -244,3 +244,16 @@ input, label {
 	position: relative;
 }
 
+#toggle-ingredients, #toggle-allergies{
+	background: none;
+	margin: 0px;
+	padding: 0px;
+	border: none;
+	color:blue;
+}
+
+#ingredients-block, #allergies-block {
+	display:none;
+	margin: 0px;
+	padding: 0px;
+}

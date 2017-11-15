@@ -10,3 +10,21 @@ function showMenu(menu){
     $(".menu-items-dock").hide();
     $("#" + menu).show();
 }
+
+function showIngredients(){
+    if($("#ingredients-block").is(":visible")){
+        $("#ingredients-block").hide();
+    }
+    else {
+        $("#ingredients-block").show();
+    }
+}
+
+function showAllergies(){
+    if($("#allergies-block").is(":visible")){
+        $("#allergies-block").hide();
+    }
+    else {
+        $("#allergies-block").show();
+    }
+}
