@@ -8,7 +8,14 @@ screen
 General Styles
 --------------------------------------------*/
 
-body {
+html, body {
+
+	/* 99.7% prevents a random ass horizontal scrollbar.*/
+	width: 99.7%;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	font-size: 14px;
+
 	align-items: center;
 }
 
@@ -25,14 +32,23 @@ Main menu grid square styles
 	margin: auto;
 }
 
+.grid-link {
+	text-decoration: none;
+	color: black;
+}
 .grid-item {
 	display: inline-block;
-	height: 100px;
-	width: 120px;
+	height: 150px;
+	width: 150px;
 	background-color: #cccccc;
 	margin: 10px;
+	font-size: 175%;
 	text-align: center;
 	vertical-align: middle;
+}
+
+.grid-item > p {
+	padding-top: 30px;
 }
 
 /*--------------------------------------------
@@ -41,15 +57,21 @@ Top/Header Dock
 
 #header-dock {
 	width: 100%;
-	height: 100px;
-	background-color: #eeeeee;
+	height: 10%;
 	position: sticky;
-	margin-bottom: 5px;
-	top: 0;
 }
 
-.title-main {
+#title-holder {
 	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.brickRedBackground {
+	background-color: #4F4F4F;
+	color: #FFFFFF;
 }
 
 /*--------------------------------------------
