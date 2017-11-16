@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pay for Order</title>
+	<link rel="stylesheet" type="text/css" href="payment.css">
+	<script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+	<!--
+	 Header dock
+	 Consistent across all screens (might need a way to enforce this)
+	-->
+	<div id="header-dock">
+		<!-- TODO: need back button to go to the previous screen -->
+		<div class="brickRedBackground" id="title-holder">
+			<h1 id="title-main">Payment</h1>
+		</div>
+	</div>
+
+	<!--
+	 Idea:
+	 For each of the items that were in the order, 
+	 	create an element for it, that has an image, and the price total
+	 	give it an attribute called draggable and set it to true
+	 	put all of the draggable items in the first box
+	 	have a button for adding new order pay boxes
+		then allow dragging between boxes:
+
+		 	then do something like this:
+		 	function drag(ev) {
+			    ev.dataTransfer.setData("text", ev.target.id);
+			}
+			follow the instructions here:
+			https://www.w3schools.com/html/html5_draganddrop.asp
+
+		then, when a draggable object is released, must recalculate price totals for all boxes
+	-->
+
+</body>
+</html>

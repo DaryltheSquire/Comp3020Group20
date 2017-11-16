@@ -1,0 +1,52 @@
+/*============================================
+payment.css
+Styles for payment screen
+============================================*/
+
+/*--------------------------------------------
+Top/Header Dock
+--------------------------------------------*/
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	font-size: 14px;
+}
+
+#header-dock {
+	width: 100%;
+	height: 10%;
+	position: sticky;
+}
+
+#title-holder {
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+#menu-bar-button-holder {
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	right: 0;
+	position: absolute;
+	bottom: 0;
+}
+
+#button-call-for-help, #button-pay-for-order  {
+	background-color: #eeeeee;
+	padding: 15px;
+	margin: 15px;
+}
+
+.brickRedBackground {
+	background-color: #4F4F4F;
+	color: #FFFFFF;
+}
+
