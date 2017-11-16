@@ -40,6 +40,7 @@ html, body {
 }
 
 #button-call-for-help, #button-pay-for-order  {
+	background-color: #eeeeee;
 	padding: 15px;
 	margin: 15px;
 }
