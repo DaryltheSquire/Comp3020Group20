@@ -9,11 +9,8 @@ Top/Header Dock
 
 html, body {
 	height: 100%;
-
-	/* 99.7% prevents a random ass horizontal scrollbar.*/
-	width: 99.7%;
-	margin-top: 0px;
-	margin-bottom: 0px;
+	width: 100%;
+	margin: 0px;
 	font-size: 14px;
 }
 
@@ -50,13 +47,15 @@ html, body {
 /*-----------------------------------------
 Navigation Bar Dock
 */
+
 ul {
 	list-style-type: none;
-    margin: 0;
-    padding: 0;
+    margin: 0px;
+    padding: 0px;
 	overflow: hidden;
-	background-color: #eeeeee;
 	margin-bottom: 5px;
+	width: 100%;
+	background-color: black;
 }
 
 li {
@@ -291,7 +290,6 @@ input, label {
 	border-bottom: thick solid;
 }
 
-<<<<<<< HEAD
 #toggle-ingredients, #toggle-allergies{
 	background: none;
 	margin: 0px;
@@ -305,7 +303,6 @@ input, label {
 	margin: 0px;
 	padding: 0px;
 }
-=======
 #side-order-item {
 	width: 90%;
 	height: 15%;
@@ -381,4 +378,3 @@ input, label {
 	background-color: #4F4F4F;
 	color: #FFFFFF;
 }
->>>>>>> origin/master
