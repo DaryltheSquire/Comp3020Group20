@@ -1,0 +1,31 @@
+﻿/*------------------------------------------------
+reviewOrder.css
+Basic style for the review and order screen
+-------------------------------------------------*/
+
+
+body {
+   align-items: center;
+}
+
+#header
+{
+text-align: center;
+font-family: "Times New Roman", Times, serif;
+font-size: 25px;
+font-weight: bold;
+}
+
+#item
+{
+border: 3px outset black;
+border-radius: 12px;
+margin-top: 10px;
+margin-bottom: 10px;
+
+}
+
+
+#button{
+text-align: center;
+}
