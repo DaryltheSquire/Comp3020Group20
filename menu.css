@@ -92,66 +92,6 @@ h4 {
 	float: left;
 }
 
-#item-one-dock {
-	width: 98%;
-	height: 15%;
-	margin-bottom: 10px;
-	position: relative;
-	float: left;
-}
-
-#food-image-dock {
-	float: left;
-	width: 20%;
-	height: 100%;
-	position: relative;
-}
-
-#desc {
-	float: left;
-	height: 90%;
-	width: 25%;
-	position: relative;
-}
-
-#button-expand-dock {
-	float: left;
-	height: 100%;
-	width: 10%;
-	position: relative;
-}
-
-#button-expand-view {
-	bottom: 0px;
-	position: absolute;
-	margin-bottom: 5px;
-	float: left;
-}
-
-#special-instruc-dock {
-	float: left;
-	height: 90%;
-	width: 18%;
-	position: relative;
-}
-
-#special-instruc-input {
-	resize: none;
-	width: 100%;
-	height: 70%;
-}
-
-#item-order-info-block {
-	float: left;
-	height: 100%;
-	width: 30%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: relative;
-	margin-left: 70%;
-}
-
 input, label {
     display:block;
 }
@@ -179,31 +119,13 @@ input, label {
 	align-items: center;
 	justify-content: center;
 	position: relative;
-}
-
-#item-order-info-block {
-	float: left;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	position: absolute;
-	margin-left: 72%;
-}
-
-#total {
-	float: left;
-	padding-left: 5px;
+	width: 33%
 }
 
 #quantity-name {
 	float: left;
 }
 
-#add-to-order-button {
-	width: 100%;
-}
-
-/* Expanded View Items */
 #expanded-item-dock {
 	width: 98%;
 	height: 30%;
@@ -229,6 +151,7 @@ input, label {
 }
 
 #temp-total {
+	width: 33%
 }
 
 #temp-special-instruc-dock {
@@ -256,11 +179,6 @@ input, label {
 .itemParagraph {
 	margin-bottom: -3%;
 }
-
-/*
-<p id="item-desc-p">Description of the item </p>
-				<p id="item-ingr-p">Ingredients: ......... (needs way to be hidden/shown)</p>
-				<p id="item-allergy-p">*/
 
 /* Side - Current Order */
 
