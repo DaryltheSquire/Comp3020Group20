@@ -53,3 +53,32 @@ function updateTotal(total_element, quantity){
     var total = parseFloat(quantity * parseFloat($("#price-" + total_element).text())).toFixed(2);
     $("#total-" + total_element).text("Total: " + total + "$");
 }
+
+/* Cookies format:
+    past-items= [
+     {
+		"id": 1,
+		"item-name": "hamburger",
+		"special-instructions": "",
+		"price": 200,
+     },
+	 {
+		"id": 2,
+		"item-name": "fries",
+		"special-instructions": "No salt",
+		"price": 200,
+	 }
+    ]
+
+    each new item removes the ], adds a ", " then the new items with a ] ending
+*/
+function addToOrder(itemNumber){
+    /*  add quantity number of those items to the cookies
+        id is itemNumber
+        item-name is gotten by $("#name-" + itemNumber)
+        special-instructions is by $("#special-instruc-" + itemNumber)
+        price is by $("#price-" + itemNumber)
+    */
+    
+    //must update the side order as well
+}
