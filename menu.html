@@ -42,15 +42,19 @@
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
-				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('#ingredients1')">Ingredients</button>
+				</div>
 
-				<div id="ingredients-block">
+				<div class="ingredients-block" id="ingredients1">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
-				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('#allergies-1')">Allergy Warning(s)</button>
+				</div>
 
-				<div id="allergies-block">
+				<div class="allergies-block" id="allergies-1">
 						<p class="itemParagraph">some list of allergies goes here</p>
 				</div>
 			</div>
@@ -64,9 +68,9 @@
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity">-</button>
-						<p id="quantity-value">0</p>
-						<button id="add-quantity">+</button>
+						<button id="red-quantity" onclick="reduceQuantity('#quantity-1')">-</button>
+						<p class="quantity-value" id="quantity-1">0</p>
+						<button id="add-quantity" onClick="addQuantity('#quantity-1')">+</button>
 					</div>
 
 					<div id="temp-total">
@@ -89,15 +93,19 @@
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
-				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('#ingredients2')">Ingredients</button>
+				</div>
 
-				<div id="ingredients-block">
+				<div class="ingredients-block" id="ingredients2">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
-				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('#allergies-2')">Allergy Warning(s)</button>
+				</div>
 
-				<div id="allergies-block">
+				<div class="allergies-block" id="allergies-2">
 						<p class="itemParagraph">some list of allergies goes here</p>
 				</div>
 			</div>
@@ -111,9 +119,9 @@
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity">-</button>
-						<p id="quantity-value">0</p>
-						<button id="add-quantity">+</button>
+						<button id="red-quantity" onclick="reduceQuantity('#quantity-2')">-</button>
+						<p class="quantity-value" id="quantity-2">0</p>
+						<button id="add-quantity" onClick="addQuantity('#quantity-2')">+</button>
 					</div>
 
 					<div id="temp-total">
@@ -136,15 +144,19 @@
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
-				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('#ingredients3')">Ingredients</button>
+				</div>
 
-				<div id="ingredients-block">
+				<div class="ingredients-block" id="ingredients3">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
-				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('#allergies-3')">Allergy Warning(s)</button>
+				</div>
 
-				<div id="allergies-block">
+				<div class="allergies-block" id="allergies-3">
 						<p class="itemParagraph">some list of allergies goes here</p>
 				</div>
 			</div>
@@ -158,9 +170,9 @@
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity">-</button>
-						<p id="quantity-value">0</p>
-						<button id="add-quantity">+</button>
+						<button id="red-quantity" onclick="reduceQuantity('#quantity-3')">-</button>
+						<p class="quantity-value" id="quantity-3">0</p>
+						<button id="add-quantity" onClick="addQuantity('#quantity-3')">+</button>
 					</div>
 
 					<div id="temp-total">
@@ -183,15 +195,19 @@
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
-				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('#ingredients4')">Ingredients</button>
+				</div>
 
-				<div id="ingredients-block">
+				<div class="ingredients-block" id="ingredients4">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
-				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('#allergies-4')">Allergy Warning(s)</button>
+				</div>
 
-				<div id="allergies-block">
+				<div class="allergies-block" id="allergies-4">
 						<p class="itemParagraph">some list of allergies goes here</p>
 				</div>
 			</div>
@@ -205,9 +221,9 @@
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity">-</button>
-						<p id="quantity-value">0</p>
-						<button id="add-quantity">+</button>
+						<button id="red-quantity" onclick="reduceQuantity('#quantity-4')">-</button>
+						<p class="quantity-value" id="quantity-4">0</p>
+						<button id="add-quantity" onClick="addQuantity('#quantity-4')">+</button>
 					</div>
 
 					<div id="temp-total">
@@ -230,15 +246,19 @@
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
-				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('#ingredients5')">Ingredients</button>
+				</div>
 
-				<div id="ingredients-block">
+				<div class="ingredients-block" id="ingredients5">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
-				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('#allergies-5')">Allergy Warning(s)</button>
+				</div>
 
-				<div id="allergies-block">
+				<div class="allergies-block" id="allergies-5">
 						<p class="itemParagraph">some list of allergies goes here</p>
 				</div>
 			</div>
@@ -252,9 +272,9 @@
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity">-</button>
-						<p id="quantity-value">0</p>
-						<button id="add-quantity">+</button>
+						<button id="red-quantity" onclick="reduceQuantity('#quantity-5')">-</button>
+						<p class="quantity-value" id="quantity-5">0</p>
+						<button id="add-quantity" onClick="addQuantity('#quantity-5')">+</button>
 					</div>
 
 					<div id="temp-total">
