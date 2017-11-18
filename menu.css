@@ -144,6 +144,10 @@ input, label {
 	width: 33%;
 }
 
+.food-price {
+	display: none;
+}
+
 #order-info-block {
 	float: left;
 	height: 100%;
@@ -160,7 +164,7 @@ input, label {
 	width: 100%;
 }
 
-#temp-special-instruc-input {
+.temp-special-instruc-input {
 	resize: none;
 	width: 100%;
 	height: 65%;

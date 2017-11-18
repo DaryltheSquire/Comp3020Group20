@@ -12,36 +12,44 @@ function showMenu(menu){
 }
 
 function showIngredients(ingredients_block){
-    if($(ingredients_block).is(":visible")){
-        $(ingredients_block).hide();
+    if($("#ingredients-" + ingredients_block).is(":visible")){
+        $("#ingredients-" + ingredients_block).hide();
     }
     else {
-        $(ingredients_block).show();
+        $("#ingredients-" + ingredients_block).show();
     }
 }
 
 function showAllergies(allergy_block){
-    if($(allergy_block).is(":visible")){
-        $(allergy_block).hide();
+    if($("#allergies-" + allergy_block).is(":visible")){
+        $("#allergies-" + allergy_block).hide();
     }
     else {
-        $(allergy_block).show();
+        $("#allergies-" + allergy_block).show();
     }
 }
 
 function addQuantity(quantity_element){
-    var currQuantity = parseInt($(quantity_element).text());
+    var currQuantity = parseInt($("#quantity-" + quantity_element).text());
 
     currQuantity++;
-    $(quantity_element).text(currQuantity);
+    $("#quantity-" + quantity_element).text(currQuantity);
+
+    updateTotal(quantity_element, currQuantity);
 }
 
 function reduceQuantity(quantity_element){
-    var currQuantity = parseInt($(quantity_element).text());
+    var currQuantity = parseInt($("#quantity-" + quantity_element).text());
     
     if(currQuantity > 0){
         currQuantity--;
     }
 
-    $(quantity_element).text(currQuantity);
+    $("#quantity-" + quantity_element).text(currQuantity);
+    updateTotal(quantity_element, currQuantity);
+}
+
+function updateTotal(total_element, quantity){
+    var total = parseFloat(quantity * parseFloat($("#price-" + total_element).text())).toFixed(2);
+    $("#total-" + total_element).text("Total: " + total + "$");
 }

@@ -39,19 +39,22 @@
 			</div>
 
 			<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-1">0.00</p>
+
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
 				<div>
-					<button id="toggle-ingredients" onclick="showIngredients('#ingredients1')">Ingredients</button>
+					<button id="toggle-ingredients" onclick="showIngredients('1')">Ingredients</button>
 				</div>
 
-				<div class="ingredients-block" id="ingredients1">
+				<div class="ingredients-block" id="ingredients-1">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
 				<div>
-					<button id="toggle-allergies" onclick="showAllergies('#allergies-1')">Allergy Warning(s)</button>
+					<button id="toggle-allergies" onclick="showAllergies('1')">Allergy Warning(s)</button>
 				</div>
 
 				<div class="allergies-block" id="allergies-1">
@@ -62,19 +65,19 @@
 			<div id="order-info-block">
 				<div id="temp-special-instruc-dock">
 					<label for="temp-special-instruc-input">Special Instructions</label>
-					<textarea rows="2" id="temp-special-instruc-input"></textarea>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-1"></textarea>
 				</div>
 
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity" onclick="reduceQuantity('#quantity-1')">-</button>
+						<button id="red-quantity" onclick="reduceQuantity('1')">-</button>
 						<p class="quantity-value" id="quantity-1">0</p>
-						<button id="add-quantity" onClick="addQuantity('#quantity-1')">+</button>
+						<button id="add-quantity" onClick="addQuantity('1')">+</button>
 					</div>
 
 					<div id="temp-total">
-						<p id="total-display">Total: 0.00$</p>
+						<p class="total-display" id="total-1">Total: 0.00$</p>
 					</div>
 
 					<div id="temp-add-to-order">
@@ -89,20 +92,23 @@
 					<img src="" alt="Food Item Image" id="expanded-food-image">
 			</div>
 
-			<div id="temp-desc">
+				<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-2">0.00</p>
+
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
 				<div>
-					<button id="toggle-ingredients" onclick="showIngredients('#ingredients2')">Ingredients</button>
+					<button id="toggle-ingredients" onclick="showIngredients('2')">Ingredients</button>
 				</div>
 
-				<div class="ingredients-block" id="ingredients2">
+				<div class="ingredients-block" id="ingredients-2">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
 				<div>
-					<button id="toggle-allergies" onclick="showAllergies('#allergies-2')">Allergy Warning(s)</button>
+					<button id="toggle-allergies" onclick="showAllergies('2')">Allergy Warning(s)</button>
 				</div>
 
 				<div class="allergies-block" id="allergies-2">
@@ -113,19 +119,19 @@
 			<div id="order-info-block">
 				<div id="temp-special-instruc-dock">
 					<label for="temp-special-instruc-input">Special Instructions</label>
-					<textarea rows="2" id="temp-special-instruc-input"></textarea>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-2"></textarea>
 				</div>
 
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity" onclick="reduceQuantity('#quantity-2')">-</button>
+						<button id="red-quantity" onclick="reduceQuantity('2')">-</button>
 						<p class="quantity-value" id="quantity-2">0</p>
-						<button id="add-quantity" onClick="addQuantity('#quantity-2')">+</button>
+						<button id="add-quantity" onClick="addQuantity('2')">+</button>
 					</div>
 
 					<div id="temp-total">
-						<p id="total-display">Total: 0.00$</p>
+						<p class="total-display" id="total-2">Total: 0.00$</p>
 					</div>
 
 					<div id="temp-add-to-order">
@@ -140,20 +146,23 @@
 					<img src="" alt="Food Item Image" id="expanded-food-image">
 			</div>
 
-			<div id="temp-desc">
+				<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-3">0.00</p>
+
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
 				<div>
-					<button id="toggle-ingredients" onclick="showIngredients('#ingredients3')">Ingredients</button>
+					<button id="toggle-ingredients" onclick="showIngredients('3')">Ingredients</button>
 				</div>
 
-				<div class="ingredients-block" id="ingredients3">
+				<div class="ingredients-block" id="ingredients-3">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
 				<div>
-					<button id="toggle-allergies" onclick="showAllergies('#allergies-3')">Allergy Warning(s)</button>
+					<button id="toggle-allergies" onclick="showAllergies('3')">Allergy Warning(s)</button>
 				</div>
 
 				<div class="allergies-block" id="allergies-3">
@@ -164,19 +173,19 @@
 			<div id="order-info-block">
 				<div id="temp-special-instruc-dock">
 					<label for="temp-special-instruc-input">Special Instructions</label>
-					<textarea rows="2" id="temp-special-instruc-input"></textarea>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-3"></textarea>
 				</div>
 
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity" onclick="reduceQuantity('#quantity-3')">-</button>
+						<button id="red-quantity" onclick="reduceQuantity('3')">-</button>
 						<p class="quantity-value" id="quantity-3">0</p>
-						<button id="add-quantity" onClick="addQuantity('#quantity-3')">+</button>
+						<button id="add-quantity" onClick="addQuantity('3')">+</button>
 					</div>
 
 					<div id="temp-total">
-						<p id="total-display">Total: 0.00$</p>
+						<p class="total-display" id="total-3">Total: 0.00$</p>
 					</div>
 
 					<div id="temp-add-to-order">
@@ -191,20 +200,23 @@
 					<img src="" alt="Food Item Image" id="expanded-food-image">
 			</div>
 
-			<div id="temp-desc">
+				<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-4">0.00</p>
+
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
 				<div>
-					<button id="toggle-ingredients" onclick="showIngredients('#ingredients4')">Ingredients</button>
+					<button id="toggle-ingredients" onclick="showIngredients('4')">Ingredients</button>
 				</div>
 
-				<div class="ingredients-block" id="ingredients4">
+				<div class="ingredients-block" id="ingredients-4">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
 				<div>
-					<button id="toggle-allergies" onclick="showAllergies('#allergies-4')">Allergy Warning(s)</button>
+					<button id="toggle-allergies" onclick="showAllergies('4')">Allergy Warning(s)</button>
 				</div>
 
 				<div class="allergies-block" id="allergies-4">
@@ -215,19 +227,19 @@
 			<div id="order-info-block">
 				<div id="temp-special-instruc-dock">
 					<label for="temp-special-instruc-input">Special Instructions</label>
-					<textarea rows="2" id="temp-special-instruc-input"></textarea>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-4"></textarea>
 				</div>
 
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity" onclick="reduceQuantity('#quantity-4')">-</button>
+						<button id="red-quantity" onclick="reduceQuantity('4')">-</button>
 						<p class="quantity-value" id="quantity-4">0</p>
-						<button id="add-quantity" onClick="addQuantity('#quantity-4')">+</button>
+						<button id="add-quantity" onClick="addQuantity('4')">+</button>
 					</div>
 
 					<div id="temp-total">
-						<p id="total-display">Total: 0.00$</p>
+						<p class="total-display" id="total-4">Total: 0.00$</p>
 					</div>
 
 					<div id="temp-add-to-order">
@@ -242,20 +254,23 @@
 					<img src="" alt="Food Item Image" id="expanded-food-image">
 			</div>
 
-			<div id="temp-desc">
+				<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-5">0.00</p>
+
 				<h4>Some appetizer item.........................Price:0.00$ </h4>
 				<p class="itemParagraph">Description of the item </p>
 
 				<div>
-					<button id="toggle-ingredients" onclick="showIngredients('#ingredients5')">Ingredients</button>
+					<button id="toggle-ingredients" onclick="showIngredients('5')">Ingredients</button>
 				</div>
 
-				<div class="ingredients-block" id="ingredients5">
+				<div class="ingredients-block" id="ingredients-5">
 					<p class="itemParagraph">some list of ingredients goes here</p>
 				</div>
 
 				<div>
-					<button id="toggle-allergies" onclick="showAllergies('#allergies-5')">Allergy Warning(s)</button>
+					<button id="toggle-allergies" onclick="showAllergies('5')">Allergy Warning(s)</button>
 				</div>
 
 				<div class="allergies-block" id="allergies-5">
@@ -266,19 +281,19 @@
 			<div id="order-info-block">
 				<div id="temp-special-instruc-dock">
 					<label for="temp-special-instruc-input">Special Instructions</label>
-					<textarea rows="2" id="temp-special-instruc-input"></textarea>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-5"></textarea>
 				</div>
 
 				<div id="temp-quantity-total-block">
 					<div id="quantity-block">
 						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity" onclick="reduceQuantity('#quantity-5')">-</button>
+						<button id="red-quantity" onclick="reduceQuantity('5')">-</button>
 						<p class="quantity-value" id="quantity-5">0</p>
-						<button id="add-quantity" onClick="addQuantity('#quantity-5')">+</button>
+						<button id="add-quantity" onClick="addQuantity('5')">+</button>
 					</div>
 
 					<div id="temp-total">
-						<p id="total-display">Total: 0.00$</p>
+						<p class="total-display" id="total-5">Total: 0.00$</p>
 					</div>
 
 					<div id="temp-add-to-order">
