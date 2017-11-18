@@ -11,20 +11,37 @@ function showMenu(menu){
     $("#" + menu).show();
 }
 
-function showIngredients(){
-    if($("#ingredients-block").is(":visible")){
-        $("#ingredients-block").hide();
+function showIngredients(ingredients_block){
+    if($(ingredients_block).is(":visible")){
+        $(ingredients_block).hide();
     }
     else {
-        $("#ingredients-block").show();
+        $(ingredients_block).show();
     }
 }
 
-function showAllergies(){
-    if($("#allergies-block").is(":visible")){
-        $("#allergies-block").hide();
+function showAllergies(allergy_block){
+    if($(allergy_block).is(":visible")){
+        $(allergy_block).hide();
     }
     else {
-        $("#allergies-block").show();
+        $(allergy_block).show();
     }
+}
+
+function addQuantity(quantity_element){
+    var currQuantity = parseInt($(quantity_element).text());
+
+    currQuantity++;
+    $(quantity_element).text(currQuantity);
+}
+
+function reduceQuantity(quantity_element){
+    var currQuantity = parseInt($(quantity_element).text());
+    
+    if(currQuantity > 0){
+        currQuantity--;
+    }
+
+    $(quantity_element).text(currQuantity);
 }
