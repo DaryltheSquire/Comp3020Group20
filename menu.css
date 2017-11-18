@@ -148,6 +148,10 @@ input, label {
 	display: none;
 }
 
+.food-name {
+	display: none;
+}
+
 #order-info-block {
 	float: left;
 	height: 100%;
