@@ -1,5 +1,5 @@
 $(document).ready(function(){ 
-   //when document is ready, open up local storage, go through each item and then display it
+   //when document is ready, open up session storage, go through each item and then display it
    
 });
 
