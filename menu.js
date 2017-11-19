@@ -80,8 +80,7 @@ function addToOrder(itemNumber){
         quantity is by $("#quantity-" + itemNumber)
     */
     
-    //must update the side order as well
-    var currentItems = localStorage.getItem("current-items");
+    var currentItems = sessionStorage.getItem("current-items");
     var itemName;
     var specialInstructions;
     var price;
@@ -99,9 +98,18 @@ function addToOrder(itemNumber){
 
         currItem = "{id:" + itemNumber + ",item-name:" + itemName + ",special-instructions:" + specialInstructions + 
         ",price:" + price + ",}";
+
+        if(currentItems === "[]"){
+            currentItems = currentItems.slice(0, -1);
+            currentItems += currItem + "]";
+        }
+        else {
+            currentItems = currentItems.slice(0, -1);
+            currentItems += "," + currItem + "]";
+        }
     }
 
-    localStorage.setItem("current-items", currentItems);
+    sessionStorage.setItem("current-items", currentItems);
 
-    alert(localStorage.getItem("current-items"));
+    //needs a way to update the side order tab
 }
