@@ -69,7 +69,6 @@ function updateTotal(total_element, quantity){
 		"price": 200,
 	 }
     ]
-
     each new item removes the ], adds a ", " then the new items with a ] ending
 */
 function addToOrder(itemNumber){
@@ -78,7 +77,31 @@ function addToOrder(itemNumber){
         item-name is gotten by $("#name-" + itemNumber)
         special-instructions is by $("#special-instruc-" + itemNumber)
         price is by $("#price-" + itemNumber)
+        quantity is by $("#quantity-" + itemNumber)
     */
     
     //must update the side order as well
+    var currentItems = localStorage.getItem("current-items");
+    var itemName;
+    var specialInstructions;
+    var price;
+    var quantity = $("#quantity-" + itemNumber).text();
+    var currItem;
+
+    if(currentItems == null){
+        currentItems = "[]";
+    }
+
+    for(var i = 0; i < quantity; i++){
+        itemName = $("#name-" + itemNumber).text();
+        specialInstructions = $("#special-instruc-" + itemNumber).val();
+        price = $("#price-" + itemNumber).text();
+
+        currItem = "{id:" + itemNumber + ",item-name:" + itemName + ",special-instructions:" + specialInstructions + 
+        ",price:" + price + ",}";
+    }
+
+    localStorage.setItem("current-items", currentItems);
+
+    alert(localStorage.getItem("current-items"));
 }
