@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title> Edit Order </title>
+    <link rel="Stylesheet" type="text/css" href="edit-order.css">
+    <script src="jquery-3.2.1.min.js"></script>
+</head>
+<body>
+    <div id="header-dock">
+		<div class="brickRedBackground" id="title-holder">
+			<h1 id="title-main">Edit order</h1>
+		</div>
+
+		<div id="menu-bar-button-holder">
+			<button id="button-call-for-help">Call for Help</button>
+		</div>
+	</div>
+
+    <div id="navigation-dock">
+		<ul>
+			<li><a href="index.html">Home</a></li>
+			<li><a href="menu.html?menu=appetizers">Appetizers</a></li>
+			<li><a href="menu.html?menu=hamburgers">Hamburgers</a></li>
+			<li><a href="menu.html?menu=sandwiches">Sandwiches</a></li>
+			<li><a href="menu.html?menu=sides">Sides</a></li>
+			<li><a href="menu.html?menu=drinks">Drinks</a></li>
+			<li><a href="menu.html?menu=desserts">Desserts</a></li>
+			<li><a href="edit-order.html">My Order</a></li>
+		</ul>
+    </div>
+    
+    <div class="menu-items-dock">
+	    <div class="darkGreenBackground roundedBorder" id="expanded-item-dock">
+			<div id="expanded-food-image-dock">
+				<img src="" alt="Food Item Image" id="expanded-food-image">
+			</div>
+
+			<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-1">0.00</p>
+
+				<!-- Used for getting the name of an item-->
+				<p class="food-name" id="name-1">something</p>
+
+				<h4>Some appetizer item.........................Price:0.00$ </h4>
+				<p class="itemParagraph">Description of the item </p>
+
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('1')">Ingredients</button>
+				</div>
+
+				<div class="ingredients-block" id="ingredients-1">
+					<p class="itemParagraph">some list of ingredients goes here</p>
+				</div>
+
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('1')">Allergy Warning(s)</button>
+				</div>
+
+				<div class="allergies-block" id="allergies-1">
+					<p class="itemParagraph">some list of allergies goes here</p>
+				</div>
+			</div>
+
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-1"></textarea>
+				</div>
+
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity" onclick="reduceQuantity('1')">-</button>
+						<p class="quantity-value" id="quantity-1">0</p>
+						<button id="add-quantity" onClick="addQuantity('1')">+</button>
+					</div>
+
+					<div id="temp-total">
+						<p class="total-display" id="total-1">Total: 0.00$</p>
+					</div>
+
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button" onclick="addToOrder('1')">Add to Order</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+
+    <div id="bottom-dock">
+        <div id="total-dock">
+            <p id="total-text">Total: </p>
+            <p id="total">0.00$</p>
+        </div>
+
+        <div id="submit-order-dock">
+            <button id="submit-order">Submit Order</button>
+        </div>
+    </div>
+</body>
+</html>
