@@ -42,10 +42,9 @@ function displayItem(itemID, quantity, specialInstructions, price){
     //Adds the specified item ID layout to the order overall
     $(".menu-items-dock").append(itemLayout);
 
-    //delete the addToOrder button (Needs a way to prevent total from bugging out)
-    $("#temp-add-to-order").remove();
-    $("#temp-add-to-order-button").remove();
-    
+    //delete (just hides it to not break the layout) the addToOrder button  
+    document.getElementById("temp-add-to-order").style.visibility = "hidden";
+
     //replace the special instructions with the new ones
     $("#special-instruc-" + itemID).val(specialInstructions);
 
