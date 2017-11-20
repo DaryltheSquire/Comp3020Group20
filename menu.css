@@ -264,8 +264,7 @@ input, label {
 	height: 25%
 }
 
-#side-order-item-desc {
-	font-size: 10px;
+#side-order-item-quantity {
 	float: left;
 }
 
@@ -286,7 +285,7 @@ input, label {
 
 #side-order-buttons-block {
 	float: left;
-	margin-left: 3%;
+	margin-left: 8.5%;
 }
 
 #side-order-edit-button {
