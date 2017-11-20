@@ -8,7 +8,8 @@ Project for HCI Group #20
  - Pay/Bill screen, and overall functionality
  - Overall styling
  - Menu items in general, food images, descriptions, allergies etc
- - Edit order screen functionality to fully edit and update items, as well as display them currently
+ - Edit order screen to prevent repeat showing the same exact items (just needs blacklist on special instructions once made)
+ - Submit order functionality
 
 ### Feedback to be implemented
 - instead of + symbol, have explcit "add another bill", show something to say that things can be dragged there
