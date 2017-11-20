@@ -1,6 +1,35 @@
 $(document).ready(function(){ 
    //when document is ready, open up session storage, go through each item and then display it
+   var currentItems = sessionStorage.getItem("current-items");
+
+   currentItems = currentItems.replace("[", "");
+   currentItems = currentItems.replace("]", "");
+
+   var splitItems = currentItems.split("}");
+   var currItemToParse;
+   var currID;
+   var quantity;
+   var overallItemInfo;
+   var specialInstructions;
    
+   for(var i = 0; i < splitItems.length; i++){
+        splitItems[i] = splitItems[i].replace("{", "");
+        currItemToParse = splitItems[i].split(",");
+        
+        overallItemInfo = splitItems[i];
+        overallItemInfo = overallItemInfo.substr(1); //remove the first character just incase, wont matter anyway
+
+        currID = getItemID(currItemToParse);
+        quantity = getQuantity(currentItems, overallItemInfo);
+        specialInstructions = getSpecialInstructions(currItemToParse);
+        
+        //so use currID to find the proper div container, use it
+        //replace the special instructions with the new ones
+        //replace the quantity with the new one
+        //replace the item total with the new one
+        //add specialInstructions to the blacklist to prevent it being used again
+
+   }
 });
 
 //this'll add each item into the div of items
@@ -11,11 +40,31 @@ function displayItem(itemID){
     //does so by updateTotals(itemID, quantityOfItems) 
 }
 
-//counts the number of times the itemID appears in the current order for quantity
-function countQuantityOfItem(itemID){
-    var quantity = 0;
+function getSpecialInstructions(itemToParse){
+    var specialInstruc = "special-instructions:"
+    for(var j = 0; j < itemToParse.length; j++){
+        if(itemToParse[j].includes("special-instructions:")){
+            return itemToParse.substr(specialInstruc.length); //removes special instructions text and returns 
+        }
+    }
+}
 
-    return quantity;
+function getQuantity(currentItems, itemInfo){
+    var tempQuantityCheck = currentItems.split(itemInfo);
+    
+    return tempQuantityCheck.length - 1;
+}
+
+//Parses the item for an ID
+function getItemID(itemToParse){
+    for(var j = 0; j < itemToParse.length; j++){
+        if(itemToParse[j].includes("id:")){
+            tempID = itemToParse[j].split(":");
+            tempID = tempID[1].replace(",", "");
+
+            return tempID; //ID of the item
+        }
+    }
 }
 
 function showIngredients(ingredients_block){
