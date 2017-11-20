@@ -156,6 +156,13 @@ input, label {
 	height: 100%;
 }
 
+#expanded-food-image {
+	float: left;
+	margin-top: 3%;
+	margin-left: 5%;
+	height: 85%;
+}
+
 #temp-desc {
 	float: left;
 	height: 100%;
