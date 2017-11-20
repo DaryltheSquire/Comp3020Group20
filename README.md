@@ -2,6 +2,14 @@
 Project for HCI Group #20
 
 ## Internal Notes
+
+### Things missing
+ - Side order display items & prices / totals for them
+ - Pay/Bill screen, and overall functionality
+ - Overall styling
+ - Menu items in general, food images, descriptions, allergies etc
+ - Edit order screen functionality to fully edit and update items, as well as display them currently
+
 ### Feedback to be implemented
 - instead of + symbol, have explcit "add another bill", show something to say that things can be dragged there
 - split bill - enter quantity 
