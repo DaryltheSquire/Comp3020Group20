@@ -144,7 +144,7 @@ input, label {
 	float: left;
 }
 
-#expanded-item-dock {
+.expanded-item-dock {
 	width: 98%;
 	height: 35%;
 	margin-bottom: 10px;

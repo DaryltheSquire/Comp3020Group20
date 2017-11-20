@@ -2,12 +2,15 @@ $(document).ready(function(){
     var url_string = window.location.href;
     var url = new URL(url_string);
     var menu = url.searchParams.get("menu");
+    document.title = menu;
 
     showMenu(menu);
 });
 
 function showMenu(menu){
     $(".menu-items-dock").hide();
+    $("#title-main").text(menu);
+    menu = menu.toLowerCase();
     $("#" + menu).show();
 }
 
@@ -110,6 +113,11 @@ function addToOrder(itemNumber){
     }
 
     sessionStorage.setItem("current-items", currentItems);
+
+    //Gets the current item, and saves the layout in sessionStorage
+    var itemAsHTML = document.getElementById("item-"+itemNumber).outerHTML;
+
+    sessionStorage.setItem(itemNumber, itemAsHTML);
 
     //needs a way to update the side order tab
 }
