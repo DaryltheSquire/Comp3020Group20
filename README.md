@@ -4,7 +4,16 @@ Project for HCI Group #20
 ## Internal Notes
 
 ### Things missing
- - Side order display items & prices / totals for them
+ - Side order display items & prices / totals for them 
+ 	for allergies normally included:
+	Milk
+	Eggs
+	Fish (e.g., bass, flounder, cod)
+	Crustacean shellfish (e.g., crab, lobster, shrimp)
+	Tree nuts (e.g., almonds, walnuts, pecans)
+	Peanuts
+	Wheat
+	Soybeans
  - Pay/Bill screen, and overall functionality
  - Overall styling
  - Menu items in general, food images, descriptions, allergies etc
