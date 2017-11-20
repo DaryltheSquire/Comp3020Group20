@@ -11,6 +11,8 @@ $(document).ready(function(){
     var overallItemInfo;
     var specialInstructions;
 
+    //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
+    //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
     for(var i = 0; i < splitItems.length; i++){
         splitItems[i] = splitItems[i].replace("{", "");
         currItemToParse = splitItems[i].split(",");
@@ -19,30 +21,39 @@ $(document).ready(function(){
         overallItemInfo = overallItemInfo.substr(1); //remove the first character just incase, wont matter anyway
  
         currID = getItemID(currItemToParse);
-        quantity = getQuantity(currentItems, overallItemInfo);
-        specialInstructions = getSpecialInstructions(currItemToParse);
-        price = getPrice(currItemToParse);
         
-        displayItem(currID, quantity, specialInstructions, price);
-        //add specialInstructions to the blacklist to prevent it being used again
- 
+        if(currID != null) {
+            quantity = getQuantity(currentItems, overallItemInfo);
+            specialInstructions = getSpecialInstructions(currItemToParse);
+            price = getPrice(currItemToParse);
+            
+            displayItem(currID, quantity, specialInstructions, price);
+
+            //add specialInstructions to the blacklist to prevent it being used again
+        }
     }
  });
  
-//this'll add each item into the div of items
+//Creates divs per item with the necessary parts
 function displayItem(itemID, quantity, specialInstructions, price){
-    //use itemID to get the entire div layout
-    var itemLayout = sessionStorage.getItem(itemID);
     
-    //add the itemlayout div to the display
-    //delete the addToOrder button
+    var itemLayout = sessionStorage.getItem(itemID);
+
+    //Adds the specified item ID layout to the order overall
+    $(".menu-items-dock").append(itemLayout);
+
+    //delete the addToOrder button (Needs a way to prevent total from bugging out)
+    $("#temp-add-to-order").remove();
+    $("#temp-add-to-order-button").remove();
     
     //replace the special instructions with the new ones
+    $("#special-instruc-" + itemID).val(specialInstructions);
 
     //replace the quantity with the new one
+    $("#quantity-" + itemID).text(quantity);
 
     var itemTotal = parseFloat(Number(quantity) * Number(price)).toFixed(2);
-    //replace item total with new one
+    $("#total-" + itemID).text("Total: " + itemTotal + "$");
 
     updateOverallTotal(itemTotal);
 }
