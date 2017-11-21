@@ -221,11 +221,15 @@ function createObjectOfItem(itemID, itemEditOrderID){
 function submitOrder(){
     //move items from current-items to past-items and then clears current-items
     var currentItems = sessionStorage.getItem("current-items");
-    sessionStorage.setItem("past-items", currentItems);
-    sessionStorage.setItem("current-items", "");
 
-    //needs popup to say their order has been placed
+    if(currentItems != null && currentItems != ""){
+        sessionStorage.setItem("past-items", currentItems);
+        sessionStorage.setItem("current-items", "");
 
-    //Navigate back to home page
-    window.location.assign("index.html");
+        //Just set a random thing to check in index, to make the modal popup
+        sessionStorage.setItem("placed-order", "1");
+
+        //Navigate back to home page
+        window.location.assign("index.html");
+    }
 }
