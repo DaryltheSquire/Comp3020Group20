@@ -3,6 +3,12 @@ payment.js
 General scripting for payment.html screen
 ============================================*/
 
+/*--------------------------------------------
+Global page variables
+--------------------------------------------*/
+
+var numberOfBills = 1;
+
 $(document).ready(function(e) {
 	generateItemDivs();  
 	$(".draggable").draggable({cursor: "crosshair", revert: "invalid"});
@@ -22,8 +28,47 @@ $(document).ready(function(e) {
 		}
 	});
 	$(".drop").sortable();
+
+	$("#add-new-bill-button").click(function(event) {
+		var newBill = createNewBill();
+		$("#add-new-bill-button").before(newBill);
+	});
 });
 
 function generateItemDivs() {
-	return 0;
+	var currentItemIndex = 0;
+	// read data from session query
+
+	// create a new div for this and put it in bill 1's container
+	
+}
+
+function createNewBill() {
+	// generates a new layout that will hold the new bill container
+	numberOfBills++;
+
+	var template_billContainer = 
+		'<div class="bill-container" id="bill-' + numberOfBills + '">\
+			<div class="bill-header">\
+				<div class="center-text-in-item">\
+					<p class="bill-header-title"></p>\
+				</div>\
+			</div>\
+			<div class="item-container drop"></div>\
+			<div class="bill-footer">\
+				<div class="center-left-text-in-item">\
+					<p class="bill-total-text"></p><p id="bill-total-' + numberOfBills + '"></p>\
+				</div>\
+			</div>\
+		</div>\
+		'
+	return template_billContainer;
+}
+
+function deleteBill() {
+	// add any items in this bill back to bill 1
+
+	// recalculate any totals
+
+	// remove the bill div
 }
