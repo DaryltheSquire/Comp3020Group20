@@ -11,6 +11,8 @@ $(document).ready(function(){
     var overallItemInfo;
     var specialInstructions;
 
+    var itemsAddedBlacklist = [];
+
     //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
     //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
     for(var i = 0; i < splitItems.length; i++){
@@ -18,8 +20,6 @@ $(document).ready(function(){
         currItemToParse = splitItems[i].split(",");
          
         overallItemInfo = splitItems[i];            
-        overallItemInfo = overallItemInfo.substr(1); //remove the first character just incase, wont matter anyway
- 
         currID = getItemID(currItemToParse);
         
         if(currID != null) {
@@ -27,32 +27,55 @@ $(document).ready(function(){
             specialInstructions = getSpecialInstructions(currItemToParse);
             price = getPrice(currItemToParse);
             
-            displayItem(currID, quantity, specialInstructions, price);
-
-            //add specialInstructions to the blacklist to prevent it being used again
+            if(!itemsAddedBlacklist.includes("quantity:" + quantity + " " + specialInstructions))
+            {
+                displayItem(currID, quantity, specialInstructions, price);
+                itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
+            }
         }
+        
     }
  });
  
+var nextID = 1;
+
 //Creates divs per item with the necessary parts
 function displayItem(itemID, quantity, specialInstructions, price){
-    
     var itemLayout = sessionStorage.getItem(itemID);
+
+    //Replace all ID's in the div with the updated version
+    var newID = nextID + "_" + itemID;
+
+    //Replace all ID's in the div with the updated version
+    itemLayout = itemLayout.replace("price-" + itemID, "price-" + newID);
+    itemLayout = itemLayout.replace("name-" + itemID, "name-" + newID);
+    itemLayout = itemLayout.replace("item-" + itemID, "item-" + newID);
+    itemLayout = itemLayout.replace("ingredients-" + itemID, "ingredients-" + newID);
+    itemLayout = itemLayout.replace("showAllergies('" + itemID + "')", "showAllergies('" + newID + "')");
+    itemLayout = itemLayout.replace("allergies-" + itemID, "allergies-" + newID);
+    itemLayout = itemLayout.replace("showIngredients('" + itemID + "')", "showIngredients('"  + newID + "')");
+    itemLayout = itemLayout.replace("special-instruc-" + itemID, "special-instruc-" + newID);
+    itemLayout = itemLayout.replace("reduceQuantity('" + itemID + "')", "reduceQuantity('" + newID + "')");
+    itemLayout = itemLayout.replace("addQuantity('" + itemID + "')", "addQuantity('" + newID + "')");
+    itemLayout = itemLayout.replace("quantity-" + itemID, "quantity-" + newID);
+    itemLayout = itemLayout.replace("total-" + itemID, "total-" + newID);
+    itemLayout = itemLayout.replace("temp-add-to-order", "temp-add-to-order-" + newID);
+    nextID++;
 
     //Adds the specified item ID layout to the order overall
     $(".menu-items-dock").append(itemLayout);
 
     //delete (just hides it to not break the layout) the addToOrder button  
-    document.getElementById("temp-add-to-order").style.visibility = "hidden";
-
+    document.getElementById("temp-add-to-order-" + newID).style.visibility = "hidden";
+    
     //replace the special instructions with the new ones
-    $("#special-instruc-" + itemID).val(specialInstructions);
+    $("#special-instruc-" + newID).val(specialInstructions);
 
     //replace the quantity with the new one
-    $("#quantity-" + itemID).text(quantity);
+    $("#quantity-" + newID).text(quantity);
 
     var itemTotal = parseFloat(Number(quantity) * Number(price)).toFixed(2);
-    $("#total-" + itemID).text("Total: " + itemTotal + "$");
+    $("#total-" + newID).text("Total: " + itemTotal + "$");
 
     updateOverallTotal(itemTotal);
 }
@@ -113,17 +136,58 @@ function getPrice(itemToParse){
  function addQuantity(quantity_element){
      var currQuantity = parseInt($("#quantity-" + quantity_element).text());
  
-     currQuantity++;
-     $("#quantity-" + quantity_element).text(currQuantity);
+    currQuantity++;
+    $("#quantity-" + quantity_element).text(currQuantity);
  
-     updateTotals(quantity_element, currQuantity);
+    updateTotals(quantity_element, currQuantity);
+
+    //also needs to add one of the items to sessionstorage
+    var currentOrder = sessionStorage.getItem("current-items"); //overall items
+    var itemID = findActualIDOf(quantity_element); //standard ID
+    var itemToAdd = createObjectOfItem(itemID, quantity_element); //item that gets added
+
+    currentOrder = currentOrder.replace("]", itemToAdd + "]");
+    sessionStorage.setItem("current-items", currentOrder);
  }
+
+function findActualIDOf(id){
+    var normalID = "";
+    var split = id.split("_");
+
+    if(split.length == 1){
+        return split[0];
+    }
+    else if(split.length >= 2){
+        return split[1];
+    }
+
+    return id;
+}
  
+function createObjectOfItem(itemID, itemEditOrderID){
+    var itemName = $("#name-" + itemEditOrderID).text();
+    var specialInstructions = $("#special-instruc-" + itemEditOrderID).val();
+    var price = $("#price-" + itemEditOrderID).text();
+
+    var item = "{id:" + itemID + ",item-name:" + itemName + ",special-instructions:" + specialInstructions + 
+    ",price:" + price + "}";
+
+    return item;
+}
+
  function reduceQuantity(quantity_element){
      var currQuantity = parseInt($("#quantity-" + quantity_element).text());
      
      if(currQuantity > 0){
          currQuantity--;
+
+         //also needs to delete one of the items from sessionstorage
+         var currentOrder = sessionStorage.getItem("current-items");
+         var itemID = findActualIDOf(quantity_element); //standard ID
+         var itemToAdd = createObjectOfItem(itemID, quantity_element); //item that gets added
+     
+         currentOrder = currentOrder.replace(itemToAdd, "");
+         sessionStorage.setItem("current-items", currentOrder);
      }
  
      $("#quantity-" + quantity_element).text(currQuantity);
