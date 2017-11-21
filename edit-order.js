@@ -20,8 +20,6 @@ $(document).ready(function(){
         currItemToParse = splitItems[i].split(",");
          
         overallItemInfo = splitItems[i];            
-        overallItemInfo = overallItemInfo.substr(1); //remove the first character just incase, wont matter anyway
-
         currID = getItemID(currItemToParse);
         
         if(currID != null) {
@@ -46,7 +44,7 @@ function displayItem(itemID, quantity, specialInstructions, price){
     var itemLayout = sessionStorage.getItem(itemID);
 
     //Replace all ID's in the div with the updated version
-    var newID = nextID + itemID;
+    var newID = nextID + "_" + itemID;
 
     //Replace all ID's in the div with the updated version
     itemLayout = itemLayout.replace("price-" + itemID, "price-" + newID);
@@ -55,7 +53,7 @@ function displayItem(itemID, quantity, specialInstructions, price){
     itemLayout = itemLayout.replace("ingredients-" + itemID, "ingredients-" + newID);
     itemLayout = itemLayout.replace("showAllergies('" + itemID + "')", "showAllergies('" + newID + "')");
     itemLayout = itemLayout.replace("allergies-" + itemID, "allergies-" + newID);
-    itemLayout = itemLayout.replace("showIngredients('" + itemID + "')", "showIngredients("  + newID + ")");
+    itemLayout = itemLayout.replace("showIngredients('" + itemID + "')", "showIngredients('"  + newID + "')");
     itemLayout = itemLayout.replace("special-instruc-" + itemID, "special-instruc-" + newID);
     itemLayout = itemLayout.replace("reduceQuantity('" + itemID + "')", "reduceQuantity('" + newID + "')");
     itemLayout = itemLayout.replace("addQuantity('" + itemID + "')", "addQuantity('" + newID + "')");
@@ -71,13 +69,13 @@ function displayItem(itemID, quantity, specialInstructions, price){
     document.getElementById("temp-add-to-order-" + newID).style.visibility = "hidden";
     
     //replace the special instructions with the new ones
-    $("#special-instruc-" + itemID).val(specialInstructions);
+    $("#special-instruc-" + newID).val(specialInstructions);
 
     //replace the quantity with the new one
-    $("#quantity-" + itemID).text(quantity);
+    $("#quantity-" + newID).text(quantity);
 
     var itemTotal = parseFloat(Number(quantity) * Number(price)).toFixed(2);
-    $("#total-" + itemID).text("Total: " + itemTotal + "$");
+    $("#total-" + newID).text("Total: " + itemTotal + "$");
 
     updateOverallTotal(itemTotal);
 }
@@ -138,17 +136,58 @@ function getPrice(itemToParse){
  function addQuantity(quantity_element){
      var currQuantity = parseInt($("#quantity-" + quantity_element).text());
  
-     currQuantity++;
-     $("#quantity-" + quantity_element).text(currQuantity);
+    currQuantity++;
+    $("#quantity-" + quantity_element).text(currQuantity);
  
-     updateTotals(quantity_element, currQuantity);
+    updateTotals(quantity_element, currQuantity);
+
+    //also needs to add one of the items to sessionstorage
+    var currentOrder = sessionStorage.getItem("current-items"); //overall items
+    var itemID = findActualIDOf(quantity_element); //standard ID
+    var itemToAdd = createObjectOfItem(itemID, quantity_element); //item that gets added
+
+    currentOrder = currentOrder.replace("]", itemToAdd + "]");
+    sessionStorage.setItem("current-items", currentOrder);
  }
+
+function findActualIDOf(id){
+    var normalID = "";
+    var split = id.split("_");
+
+    if(split.length == 1){
+        return split[0];
+    }
+    else if(split.length >= 2){
+        return split[1];
+    }
+
+    return id;
+}
  
+function createObjectOfItem(itemID, itemEditOrderID){
+    var itemName = $("#name-" + itemEditOrderID).text();
+    var specialInstructions = $("#special-instruc-" + itemEditOrderID).val();
+    var price = $("#price-" + itemEditOrderID).text();
+
+    var item = "{id:" + itemID + ",item-name:" + itemName + ",special-instructions:" + specialInstructions + 
+    ",price:" + price + "}";
+
+    return item;
+}
+
  function reduceQuantity(quantity_element){
      var currQuantity = parseInt($("#quantity-" + quantity_element).text());
      
      if(currQuantity > 0){
          currQuantity--;
+
+         //also needs to delete one of the items from sessionstorage
+         var currentOrder = sessionStorage.getItem("current-items");
+         var itemID = findActualIDOf(quantity_element); //standard ID
+         var itemToAdd = createObjectOfItem(itemID, quantity_element); //item that gets added
+     
+         currentOrder = currentOrder.replace(itemToAdd, "");
+         sessionStorage.setItem("current-items", currentOrder);
      }
  
      $("#quantity-" + quantity_element).text(currQuantity);

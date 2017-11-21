@@ -100,7 +100,7 @@ function addToOrder(itemNumber){
         price = $("#price-" + itemNumber).text();
 
         currItem = "{id:" + itemNumber + ",item-name:" + itemName + ",special-instructions:" + specialInstructions + 
-        ",price:" + price + ",}";
+        ",price:" + price + "}";
 
         if(currentItems === "[]"){
             currentItems = currentItems.slice(0, -1);
@@ -108,7 +108,7 @@ function addToOrder(itemNumber){
         }
         else {
             currentItems = currentItems.slice(0, -1);
-            currentItems += "," + currItem + "]";
+            currentItems += currItem + "]";
         }
     }
 
@@ -118,6 +118,5 @@ function addToOrder(itemNumber){
     var itemAsHTML = document.getElementById("item-"+itemNumber).outerHTML;
 
     sessionStorage.setItem(itemNumber, itemAsHTML);
-
     //needs a way to update the side order tab
 }
