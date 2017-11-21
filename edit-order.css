@@ -75,7 +75,6 @@ ul {
 	overflow: hidden;
 	margin-bottom: 5px;
 	width: 100%;
-	background-color: black;
 }
 
 li {
@@ -88,7 +87,6 @@ li a {
     padding: 14px 16px;
 	text-decoration: none;
 	color: #FFFFFF;
-	background: #000000;
 }
 
 li a:hover {
@@ -147,13 +145,21 @@ input, label {
 .expanded-item-dock {
 	width: 98%;
 	height: 35%;
-	margin-bottom: 10px;
+	margin-bottom: 15px;
+	margin-left: 8px;
 }
 
 #expanded-food-image-dock {
 	float: left;
 	width: 33%;
 	height: 100%;
+}
+
+#expanded-food-image {
+	float: left;
+	margin-top: 2%;
+	margin-left: 4%;
+	height: 85%;
 }
 
 #temp-desc {
@@ -213,7 +219,7 @@ input, label {
 	margin-bottom: 2px;
 	padding: 0px;
 	border: none;
-	color: black;
+	color: orange;
 }
 
 .ingredients-block, .allergies-block {

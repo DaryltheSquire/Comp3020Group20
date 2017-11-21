@@ -17,7 +17,7 @@
 		</div>
 	</div>
 
-    <div id="navigation-dock">
+    <div class="brickRedBackground" id="navigation-dock">
 		<ul>
 			<li><a href="index.html">Home</a></li>
 			<li><a href="menu.html?menu=Appetizers">Appetizers</a></li>
@@ -31,62 +31,7 @@
     </div>
     
     <div class="menu-items-dock">
-	    <div class="darkGreenBackground roundedBorder expanded-item-dock" id="expanded-item-dock">
-			<div id="expanded-food-image-dock">
-				<img src="" alt="Food Item Image" id="expanded-food-image">
-			</div>
-
-			<div id="temp-desc">
-				<!-- Used for getting the price of an item-->
-				<p class="food-price" id="price-1">0.00</p>
-
-				<!-- Used for getting the name of an item-->
-				<p class="food-name" id="name-1">something</p>
-
-				<h4>Some appetizer item.........................Price:0.00$ </h4>
-				<p class="itemParagraph">Description of the item </p>
-
-				<div>
-					<button id="toggle-ingredients" onclick="showIngredients('1')">Ingredients</button>
-				</div>
-
-				<div class="ingredients-block" id="ingredients-1">
-					<p class="itemParagraph">some list of ingredients goes here</p>
-				</div>
-
-				<div>
-					<button id="toggle-allergies" onclick="showAllergies('1')">Allergy Warning(s)</button>
-				</div>
-
-				<div class="allergies-block" id="allergies-1">
-					<p class="itemParagraph">some list of allergies goes here</p>
-				</div>
-			</div>
-
-			<div id="order-info-block">
-				<div id="temp-special-instruc-dock">
-					<label for="temp-special-instruc-input">Special Instructions</label>
-					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-1"></textarea>
-				</div>
-
-				<div id="temp-quantity-total-block">
-					<div id="quantity-block">
-						<p id="quantity-name">Quantity: </p>
-						<button id="red-quantity" onclick="reduceQuantity('1')">-</button>
-						<p class="quantity-value" id="quantity-1">0</p>
-						<button id="add-quantity" onClick="addQuantity('1')">+</button>
-					</div>
-
-					<div id="temp-total">
-						<p class="total-display" id="total-1">Total: 0.00$</p>
-					</div>
-
-					<div id="temp-add-to-order">
-						<button id="temp-add-to-order-button" onclick="addToOrder('1')">Add to Order</button>
-					</div>
-				</div>				
-			</div>
-		</div>
+	    
 	</div>
 
     <div id="bottom-dock">
