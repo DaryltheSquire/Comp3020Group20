@@ -5,7 +5,10 @@ Project for HCI Group #20
 
 ### Things missing
  - Side order display items & prices / totals for them 
- 	for allergies normally included:
+ - Pay/Bill screen, and overall functionality
+ - Overall styling
+ - Menu items in general, food images, descriptions, allergies etc
+ for allergies normally included:
 	Milk
 	Eggs
 	Fish (e.g., bass, flounder, cod)
@@ -14,9 +17,6 @@ Project for HCI Group #20
 	Peanuts
 	Wheat
 	Soybeans
- - Pay/Bill screen, and overall functionality
- - Overall styling
- - Menu items in general, food images, descriptions, allergies etc
  - Edit order screen to prevent repeat showing the same exact items (just needs blacklist on special instructions once made)
  - Submit order functionality
 
