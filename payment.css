@@ -9,10 +9,7 @@ Temporary testing styles
 
 #add-new-bill-button {
 	background-color: #ffaaff;
-	width: 100px;
-	height: 100px;
 }
-
 
 #call-waiter-for-payment-button {
 	background-color: #5FD529;
@@ -20,20 +17,19 @@ Temporary testing styles
 	height: 100px;
 }
 
-
-
-
-
-
-
-
-
 .total-all-bills {
 	background-color: #AAE2FF;
 	width: 100px;
 	height: 100px;
 }
 
+/*--------------------------------------------
+General Styles
+--------------------------------------------*/
+
+p {
+
+}
 
 /*--------------------------------------------
 Top/Header Dock
@@ -103,7 +99,6 @@ Body/Content
 }
 
 .bill-container {
-	background-color: #cccccc;
 	width: 300px;
 	height: 90%;
 	float: left;
@@ -116,8 +111,24 @@ Body/Content
 	height: 10%;
 }
 
+.center-text-in-item {
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+}
+
+.center-left-text-in-item {
+	text-align: center;
+	display: flex;
+	align-items: center;
+	justify-content: left;
+	height: 100%;
+}
+
 .item-container {
-	background-color: #FF00E7;
+	background-color: #dddddd;
 	width: 100%;
 	height: 80%;
 }
@@ -125,8 +136,9 @@ Body/Content
 .bill-footer {
 	position: relative;
 	background-color: #aaaaaa;
-	width: 100%;
+	width: 98%;
 	height: 10%;
+	padding-left: 2%;
 }
 
 /*--------------------------------------------

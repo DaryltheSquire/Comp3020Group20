@@ -12,7 +12,7 @@
 	-->
 	<div id="header-dock" class="brickRedBackground">
 		<!-- TODO: need back button to go to the previous screen -->
-		<div id="title-holder">
+		<div class="center-text-in-item">
 			<h1 id="title-main">Payment</h1>
 		</div>
 		<!-- TODO: need to add the call for help button at the top right -->
@@ -25,54 +25,63 @@
 		<!-- bill 1 can never be deleted -->
 		<div id="scrolling-container">
 			<div class="bill-container" id="bill1">
-				<div class="bill-header"></div>
+				<div class="bill-header">
+					<div class="center-text-in-item">
+						<p class="bill-header-title">Bill 1</p>
+					</div>
+				</div>
 				<div class="item-container"></div>
-				<div class="bill-footer"></div>
+				<div class="bill-footer">
+					<div class="center-left-text-in-item">
+						<p>Bill 1 total: </p><p id="bill-1-total"></p>
+					</div>
+				</div>
 			</div>
 
 			<div class="bill-container" id="bill2">
-				<div class="bill-header"></div>
+				<div class="bill-header">
+					<div class="center-text-in-item">
+						<p class="bill-header-title">Bill 2</p>
+					</div>
+				</div>
 				<div class="item-container"></div>
-				<div class="bill-footer"></div>
+				<div class="bill-footer">
+					<div class="center-left-text-in-item">
+						<p>Bill 2 total: </p><p id="bill-1-total"></p>
+					</div>
+				</div>
 			</div>
 
 			<div class="bill-container" id="bill3">
-				<div class="bill-header"></div>
+				<div class="bill-header">
+					<div class="center-text-in-item">
+						<p class="bill-header-title">Bill 3</p>
+					</div>
+				</div>
 				<div class="item-container"></div>
-				<div class="bill-footer"></div>
+				<div class="bill-footer">
+					<div class="center-left-text-in-item">
+						<p>Bill 3 total: </p><p id="bill-1-total"></p>
+					</div>
+				</div>
 			</div>
 
-			<div class="bill-container" id="bill4">
-				<div class="bill-header"></div>
-				<div class="item-container"></div>
-				<div class="bill-footer"></div>
-			</div>
-
-			<div class="bill-container" id="bill5">
-				<div class="bill-header"></div>
-				<div class="item-container"></div>
-				<div class="bill-footer"></div>
-			</div>
-
-			<div class="bill-container" id="bill6">
-				<div class="bill-header"></div>
-				<div class="item-container"></div>
-				<div class="bill-footer"></div>
+			<div class="bill-container" id="add-new-bill-button">
+				<div class="center-text-in-item">
+					<!-- TODO: when tapped, this should create a new bill -->
+					<h3>Tap here to add a separate bill</h3>
+				</div>
 			</div>
 		</div>
 
 		<span id="add-new-bill-button"></span>
 	</div>
 
-	<!-- footer bar -->
+
 	<div id="footer-dock" class="brickRedBackground">
 		<span class="total-all-bills"></span>
 		<span id="call-waiter-for-payment-button"></span>
 	</div>
-
-	<!-- side scrolling bill thing -->
-	<!-- side scrolling bill thing -->
-
 
 	<!--
 	 Idea:
