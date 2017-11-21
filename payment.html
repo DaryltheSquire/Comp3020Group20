@@ -10,12 +10,69 @@
 	 Header dock
 	 Consistent across all screens (might need a way to enforce this)
 	-->
-	<div id="header-dock">
+	<div id="header-dock" class="brickRedBackground">
 		<!-- TODO: need back button to go to the previous screen -->
-		<div class="brickRedBackground" id="title-holder">
+		<div id="title-holder">
 			<h1 id="title-main">Payment</h1>
 		</div>
+		<!-- TODO: need to add the call for help button at the top right -->
 	</div>
+
+	<!-- side scrolling bill thing -->
+	<div id="content">
+		<!-- Bill container template, copy this when making new bills -->
+		<!-- new bills inserted after the last one created -->
+		<!-- bill 1 can never be deleted -->
+		<div id="scrolling-container">
+			<div class="bill-container" id="bill1">
+				<div class="bill-header"></div>
+				<div class="item-container"></div>
+				<div class="bill-footer"></div>
+			</div>
+
+			<div class="bill-container" id="bill2">
+				<div class="bill-header"></div>
+				<div class="item-container"></div>
+				<div class="bill-footer"></div>
+			</div>
+
+			<div class="bill-container" id="bill3">
+				<div class="bill-header"></div>
+				<div class="item-container"></div>
+				<div class="bill-footer"></div>
+			</div>
+
+			<div class="bill-container" id="bill4">
+				<div class="bill-header"></div>
+				<div class="item-container"></div>
+				<div class="bill-footer"></div>
+			</div>
+
+			<div class="bill-container" id="bill5">
+				<div class="bill-header"></div>
+				<div class="item-container"></div>
+				<div class="bill-footer"></div>
+			</div>
+
+			<div class="bill-container" id="bill6">
+				<div class="bill-header"></div>
+				<div class="item-container"></div>
+				<div class="bill-footer"></div>
+			</div>
+		</div>
+
+		<span id="add-new-bill-button"></span>
+	</div>
+
+	<!-- footer bar -->
+	<div id="footer-dock" class="brickRedBackground">
+		<span class="total-all-bills"></span>
+		<span id="call-waiter-for-payment-button"></span>
+	</div>
+
+	<!-- side scrolling bill thing -->
+	<!-- side scrolling bill thing -->
+
 
 	<!--
 	 Idea:
