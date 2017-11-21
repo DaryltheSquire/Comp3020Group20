@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Entrees</title>
+	<title></title>
 	<link rel="stylesheet" type="text/css" href="menu.css">
 	<script src="jquery-3.2.1.min.js"></script>
 	<script src="menu.js"></script>
@@ -9,33 +9,323 @@
 <body>
 	<div id="header-dock">
 		<div class="brickRedBackground" id="title-holder">
-			<h1 id="title-main">Entrees</h1>
+			<h1 id="title-main"></h1>
 		</div>
 
 		<div id="menu-bar-button-holder">
 			<button id="button-call-for-help">Call for Help</button>
-			<button id="button-pay-for-order">Pay for Order</button>
+			<button id="button-pay-for-order">View Bill</button>
 		</div>
 	</div>
 
-	<div id="navigation-dock">
+	<div class="brickRedBackground" id="navigation-dock">
 		<ul>
 			<li><a href="index.html">Home</a></li>
-			<li><a href="menu.html?menu=appetizers">Appetizers</a></li>
-			<li><a href="menu.html?menu=hamburgers">Hamburgers</a></li>
-			<li><a href="menu.html?menu=sandwiches">Sandwiches</a></li>
-			<li><a href="menu.html?menu=sides">Sides</a></li>
-			<li><a href="menu.html?menu=drinks">Drinks</a></li>
-			<li><a href="menu.html?menu=desserts">Desserts</a></li>
-			<li><a href="menu.html?menu=sandwiches">My Order</a></li>
+			<li><a href="menu.html?menu=Appetizers">Appetizers</a></li>
+			<li><a href="menu.html?menu=Hamburgers">Hamburgers</a></li>
+			<li><a href="menu.html?menu=Sandwiches">Sandwiches</a></li>
+			<li><a href="menu.html?menu=Sides">Sides</a></li>
+			<li><a href="menu.html?menu=Drinks">Drinks</a></li>
+			<li><a href="menu.html?menu=Desserts">Desserts</a></li>
+			<li><a href="edit-order.html">Edit Order</a></li>
 		</ul>
 	</div>
 
+	
 	<!-- appetizers menu block -->
 	<div class="menu-items-dock" id="appetizers">
+		<div class="darkGreenBackground roundedBorder expanded-item-dock" id="item-1">
+			<div id="expanded-food-image-dock">
+				<img src="hush_puppies.jpg" alt="Food Item Image" id="expanded-food-image">
+			</div>
+
+			<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-1">0.00</p>
+
+				<!-- Used for getting the name of an item-->
+				<p class="food-name" id="name-1">Hush Puppies</p>
+
+				<h4>Hush Puppies.........................Price:0.00$ </h4>
+				<p class="itemParagraph">golden nuggets of fried cornmeal </p>
+
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('1')">Ingredients</button>
+				</div>
+
+				<div class="ingredients-block" id="ingredients-1">
+					<p class="itemParagraph">Vegetable Oil, cornmeal, sugar, all-purpose flour, baking power, 
+							baking soda, kosher salt, buttermilk, eggs, unsalted butter, scallions</p>
+				</div>
+
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('1')">Allergy Warning(s)</button>
+				</div>
+
+				<div class="allergies-block" id="allergies-1">
+					<p class="itemParagraph">Contains: Milk product, Eggs, Flour</p>
+				</div>
+			</div>
+
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-1"></textarea>
+				</div>
+
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity" onclick="reduceQuantity('1')">-</button>
+						<p class="quantity-value" id="quantity-1">0</p>
+						<button id="add-quantity" onClick="addQuantity('1')">+</button>
+					</div>
+
+					<div id="temp-total">
+						<p class="total-display" id="total-1">Total: 0.00$</p>
+					</div>
+
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button" onclick="addToOrder('1')">Add to Order</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+
+		<div class="darkGreenBackground roundedBorder expanded-item-dock" id="item-2">
+			<div id="expanded-food-image-dock">
+				<img src="chicken_wings.jpg" alt="Food Item Image" id="expanded-food-image">
+			</div>
+
+			<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-2">0.00</p>
+
+				<!-- Used for getting the name of an item-->
+				<p class="food-name" id="name-2">Hot Chicken Wings</p>
+
+				<h4>Hot Chicken Wings.........................Price:0.00$ </h4>
+				<p class="itemParagraph">Description of the item </p>
+
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('2')">Ingredients</button>
+				</div>
+
+				<div class="ingredients-block" id="ingredients-2">
+					<p class="itemParagraph">Chicken Wings, Black Pepper, Cayenne Pepper, BBQ Sauce</p>
+				</div>
+
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('2')">Allergy Warning(s)</button>
+				</div>
+
+				<div class="allergies-block" id="allergies-2">
+					<p class="itemParagraph">None</p>
+				</div>
+			</div>
+
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-2"></textarea>
+				</div>
+
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity" onclick="reduceQuantity('2')">-</button>
+						<p class="quantity-value" id="quantity-2">0</p>
+						<button id="add-quantity" onClick="addQuantity('2')">+</button>
+					</div>
+
+					<div id="temp-total">
+						<p class="total-display" id="total-2">Total: 0.00$</p>
+					</div>
+
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button" onclick="addToOrder('2')">Add to Order</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+
+		<div class="darkGreenBackground roundedBorder expanded-item-dock" id="item-3">
+			<div id="expanded-food-image-dock">
+				<img src="garlic_bread.jpeg" alt="Food Item Image" id="expanded-food-image">
+			</div>
+
+			<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-3">0.00</p>
+
+				<!-- Used for getting the name of an item-->
+				<p class="food-name" id="name-3">Cheesy Garlic Bread</p>
+
+				<h4>Cheesy Garlic Toast.........................Price:0.00$ </h4>
+				<p class="itemParagraph">Garlic Bread glazed with Butter, and loads of Cheese </p>
+
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('3')">Ingredients</button>
+				</div>
+
+				<div class="ingredients-block" id="ingredients-3">
+					<p class="itemParagraph">Butter, Parmesan Cheese, Parsley, Garlic Powder, Italian Bread</p>
+				</div>
+
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('3')">Allergy Warning(s)</button>
+				</div>
+
+				<div class="allergies-block" id="allergies-3">
+					<p class="itemParagraph">Contains: Dairy, and Wheat products</p>
+				</div>
+			</div>
+
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-3"></textarea>
+				</div>
+
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity" onclick="reduceQuantity('3')">-</button>
+						<p class="quantity-value" id="quantity-3">0</p>
+						<button id="add-quantity" onClick="addQuantity('3')">+</button>
+					</div>
+
+					<div id="temp-total">
+						<p class="total-display" id="total-3">Total: 0.00$</p>
+					</div>
+
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button" onclick="addToOrder('3')">Add to Order</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+
+		<div class="darkGreenBackground roundedBorder expanded-item-dock" id="item-4">
+			<div id="expanded-food-image-dock">
+				<img src="mozzarella_sticks.jpg" alt="Food Item Image" id="expanded-food-image">
+			</div>
+
+			<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-4">0.00</p>
+
+				<!-- Used for getting the name of an item-->
+				<p class="food-name" id="name-4">Mozzarella Sticks</p>
+
+				<h4>Mozzarella Sticks.........................Price:0.00$ </h4>
+				<p class="itemParagraph"> Deep Fried Sticks of Mozzarella Coated in Bread Crumbs</p>
+
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('4')">Ingredients</button>
+				</div>
+
+				<div class="ingredients-block" id="ingredients-4">
+					<p class="itemParagraph">Mozzarella Cheese, All-purpose Flour, Eggs, Bread Crumbs</p>
+				</div>
+
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('4')">Allergy Warning(s)</button>
+				</div>
+
+				<div class="allergies-block" id="allergies-4">
+					<p class="itemParagraph">Contains: Dairy, and Wheat products</p>
+				</div>
+			</div>
+
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-4"></textarea>
+				</div>
+
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity" onclick="reduceQuantity('4')">-</button>
+						<p class="quantity-value" id="quantity-4">0</p>
+						<button id="add-quantity" onClick="addQuantity('4')">+</button>
+					</div>
+
+					<div id="temp-total">
+						<p class="total-display" id="total-4">Total: 0.00$</p>
+					</div>
+
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button" onclick="addToOrder('4')">Add to Order</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+
+		<div class="darkGreenBackground roundedBorder expanded-item-dock" id="item-5">
+			<div id="expanded-food-image-dock">
+				<img src="nachos.jpg" alt="Food Item Image" id="expanded-food-image">
+			</div>
+
+			<div id="temp-desc">
+				<!-- Used for getting the price of an item-->
+				<p class="food-price" id="price-5">0.00</p>
+
+				<!-- Used for getting the name of an item-->
+				<p class="food-name" id="name-5">Cheesy Nachos</p>
+
+				<h4>Cheesy Nachos.........................Price:0.00$ </h4>
+				<p class="itemParagraph">Nachos covered in cheese, onions, chili flakes, and come with guacamole</p>
+
+				<div>
+					<button id="toggle-ingredients" onclick="showIngredients('5')">Ingredients</button>
+				</div>
+
+				<div class="ingredients-block" id="ingredients-5">
+					<p class="itemParagraph">Torilla Chips, Salsa, Onions, Cheese, Chili Flakes, Guacamole</p>
+				</div>
+
+				<div>
+					<button id="toggle-allergies" onclick="showAllergies('5')">Allergy Warning(s)</button>
+				</div>
+
+				<div class="allergies-block" id="allergies-5">
+					<p class="itemParagraph">Contains: Wheat Products</p>
+				</div>
+			</div>
+
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" class="temp-special-instruc-input" id="special-instruc-5"></textarea>
+				</div>
+
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity" onclick="reduceQuantity('5')">-</button>
+						<p class="quantity-value" id="quantity-5">0</p>
+						<button id="add-quantity" onClick="addQuantity('5')">+</button>
+					</div>
+
+					<div id="temp-total">
+						<p class="total-display" id="total-5">Total: 0.00$</p>
+					</div>
+
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button" onclick="addToOrder('5')">Add to Order</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+		
+	<!-- Hamburgers -->
+	<div class="menu-items-dock" id="hamburgers">
 		<div class="darkGreenBackground roundedBorder" id="expanded-item-dock">
 			<div id="expanded-food-image-dock">
-					<img src="" alt="Food Item Image" id="expanded-food-image">
+				<img src="" alt="Food Item Image" id="expanded-food-image">
 			</div>
 
 			<div id="temp-desc">
@@ -51,7 +341,7 @@
 				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
 
 				<div id="allergies-block">
-						<p class="itemParagraph">some list of allergies goes here</p>
+					<p class="itemParagraph">some list of allergies goes here</p>
 				</div>
 			</div>
 
@@ -79,225 +369,180 @@
 				</div>				
 			</div>
 		</div>
+	</div>
 
-		<div class="darkGreenBackground roundedBorder" id="item-one-dock">
-			<div id="food-image-dock">
-				<img src="" alt="Food Item Image" id="food-image">
+	<!-- Sandwiches -->
+	<div class="menu-items-dock" id="sandwiches">
+		<div class="darkGreenBackground roundedBorder" id="expanded-item-dock">
+			<div id="expanded-food-image-dock">
+				<img src="" alt="Food Item Image" id="expanded-food-image">
 			</div>
 
-			<div id="desc">
-				<h4>Food Item Name.........................Price:0.00$ </h4>
-				<p>Description of the item </p>
-			</div>
+			<div id="temp-desc">
+				<h4>Some appetizer item.........................Price:0.00$ </h4>
+				<p class="itemParagraph">Description of the item </p>
 
-			<div id="button-expand-dock">
-				<button id="button-expand-view"><img src="" alt="More Info"></button>
-			</div>
+				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
 
-			<div id="special-instruc-dock">
-				<label for="special-instruc-input">Special Instructions</label>
-				<textarea rows="2" id="special-instruc-input"></textarea>
-			</div>
-			
-			<div id="item-order-info-block">
-				<div>
-					<div id="quantity-total-block">
-						<div id="quantity-block">
-							<p id="quantity-name">Quantity: </p>
-							<button id="red-quantity">-</button>
-							<p id="quantity-value">0</p>
-							<button id="add-quantity">+</button>
-						</div>
+				<div id="ingredients-block">
+					<p class="itemParagraph">some list of ingredients goes here</p>
+				</div>
 
-						<div id="total">
-							<p id="total-display">Total: 0.00$</p>
-						</div>
-					</div>
+				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
 
-					<div id="add-to-order">
-						<button id="add-to-order-button">Add to Order</button>
-					</div>
+				<div id="allergies-block">
+					<p class="itemParagraph">some list of allergies goes here</p>
 				</div>
 			</div>
-		</div>
 
-		<div class="darkGreenBackground roundedBorder" id="item-one-dock">
-			<div id="food-image-dock">
-				<img src="" alt="Food Item Image" id="food-image">
-			</div>
-
-			<div id="desc">
-				<h4>Food Item Name.........................Price:0.00$ </h4>
-				<p>Description of the item </p>
-			</div>
-
-			<div id="button-expand-dock">
-				<button id="button-expand-view"><img src="" alt="More Info"></button>
-			</div>
-
-			<div id="special-instruc-dock">
-				<label for="special-instruc-input">Special Instructions</label>
-				<textarea rows="2" id="special-instruc-input"></textarea>
-			</div>
-			
-			<div id="item-order-info-block">
-				<div>
-					<div id="quantity-total-block">
-						<div id="quantity-block">
-							<p id="quantity-name">Quantity: </p>
-							<button id="red-quantity">-</button>
-							<p id="quantity-value">0</p>
-							<button id="add-quantity">+</button>
-						</div>
-
-						<div id="total">
-							<p id="total-display">Total: 0.00$</p>
-						</div>
-					</div>
-
-					<div id="add-to-order">
-						<button id="add-to-order-button">Add to Order</button>
-					</div>
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" id="temp-special-instruc-input"></textarea>
 				</div>
-			</div>
-		</div>
 
-		<div class="darkGreenBackground roundedBorder" id="item-one-dock">
-			<div id="food-image-dock">
-				<img src="" alt="Food Item Image" id="food-image">
-			</div>
-
-			<div id="desc">
-				<h4>Food Item Name.........................Price:0.00$ </h4>
-				<p>Description of the item </p>
-			</div>
-
-			<div id="button-expand-dock">
-				<button id="button-expand-view"><img src="" alt="More Info"></button>
-			</div>
-
-			<div id="special-instruc-dock">
-				<label for="special-instruc-input">Special Instructions</label>
-				<textarea rows="2" id="special-instruc-input"></textarea>
-			</div>
-			
-			<div id="item-order-info-block">
-				<div>
-					<div id="quantity-total-block">
-						<div id="quantity-block">
-							<p id="quantity-name">Quantity: </p>
-							<button id="red-quantity">-</button>
-							<p id="quantity-value">0</p>
-							<button id="add-quantity">+</button>
-						</div>
-
-						<div id="total">
-							<p id="total-display">Total: 0.00$</p>
-						</div>
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity">-</button>
+						<p id="quantity-value">0</p>
+						<button id="add-quantity">+</button>
 					</div>
 
-					<div id="add-to-order">
-						<button id="add-to-order-button">Add to Order</button>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="darkGreenBackground roundedBorder" id="item-one-dock">
-			<div id="food-image-dock">
-				<img src="" alt="Food Item Image" id="food-image">
-			</div>
-
-			<div id="desc">
-				<h4>Food Item Name.........................Price:0.00$ </h4>
-				<p>Description of the item </p>
-			</div>
-
-			<div id="button-expand-dock">
-				<button id="button-expand-view"><img src="" alt="More Info"></button>
-			</div>
-
-			<div id="special-instruc-dock">
-				<label for="special-instruc-input">Special Instructions</label>
-				<textarea rows="2" id="special-instruc-input"></textarea>
-			</div>
-			
-			<div id="item-order-info-block">
-				<div>
-					<div id="quantity-total-block">
-						<div id="quantity-block">
-							<p id="quantity-name">Quantity: </p>
-							<button id="red-quantity">-</button>
-							<p id="quantity-value">0</p>
-							<button id="add-quantity">+</button>
-						</div>
-
-						<div id="total">
-							<p id="total-display">Total: 0.00$</p>
-						</div>
+					<div id="temp-total">
+						<p id="total-display">Total: 0.00$</p>
 					</div>
 
-					<div id="add-to-order">
-						<button id="add-to-order-button">Add to Order</button>
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button">Add to Order</button>
 					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="darkGreenBackground roundedBorder" id="item-one-dock">
-			<div id="food-image-dock">
-				<img src="" alt="Food Item Image" id="food-image">
-			</div>
-
-			<div id="desc">
-				<h4>Food Item Name.........................Price:0.00$ </h4>
-				<p>Description of the item </p>
-			</div>
-
-			<div id="button-expand-dock">
-				<button id="button-expand-view"><img src="" alt="More Info"></button>
-			</div>
-
-			<div id="special-instruc-dock">
-				<label for="special-instruc-input">Special Instructions</label>
-				<textarea rows="2" id="special-instruc-input"></textarea>
-			</div>
-			
-			<div id="item-order-info-block">
-				<div>
-					<div id="quantity-total-block">
-						<div id="quantity-block">
-							<p id="quantity-name">Quantity: </p>
-							<button id="red-quantity">-</button>
-							<p id="quantity-value">0</p>
-							<button id="add-quantity">+</button>
-						</div>
-
-						<div id="total">
-							<p id="total-display">Total: 0.00$</p>
-						</div>
-					</div>
-
-					<div id="add-to-order">
-						<button id="add-to-order-button">Add to Order</button>
-					</div>
-				</div>
+				</div>				
 			</div>
 		</div>
 	</div>
 
-	<!-- Hamburgers -->
-	<div class="menu-items-dock" id="hamburgers">
-		<div id="expanded-item-dock">
+	<!-- Sides -->
+	<div class="menu-items-dock" id="sides">
+		<div class="darkGreenBackground roundedBorder" id="expanded-item-dock">
 			<div id="expanded-food-image-dock">
-					<img src="" alt="Food Item Image" id="expanded-food-image">
+				<img src="" alt="Food Item Image" id="expanded-food-image">
 			</div>
 
 			<div id="temp-desc">
-				<h4>Something something hamburger.........................Price:0.00$ </h4>
-				<p>Description of the item </p>
-				<p>Ingredients: ......... (needs way to be hidden/shown)</p>
-				<p>Allergy Warning(s): ........ (needs way to be hidden/shown)</p>
+				<h4>Some appetizer item.........................Price:0.00$ </h4>
+				<p class="itemParagraph">Description of the item </p>
+
+				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
+
+				<div id="ingredients-block">
+					<p class="itemParagraph">some list of ingredients goes here</p>
+				</div>
+
+				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
+
+				<div id="allergies-block">
+					<p class="itemParagraph">some list of allergies goes here</p>
+				</div>
+			</div>
+
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" id="temp-special-instruc-input"></textarea>
+				</div>
+
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity">-</button>
+						<p id="quantity-value">0</p>
+						<button id="add-quantity">+</button>
+					</div>
+
+					<div id="temp-total">
+						<p id="total-display">Total: 0.00$</p>
+					</div>
+
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button">Add to Order</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+
+	<!-- Drinks -->
+	<div class="menu-items-dock" id="drinks">
+		<div class="darkGreenBackground roundedBorder" id="expanded-item-dock">
+			<div id="expanded-food-image-dock">
+				<img src="" alt="Food Item Image" id="expanded-food-image">
+			</div>
+
+			<div id="temp-desc">
+				<h4>Some appetizer item.........................Price:0.00$ </h4>
+				<p class="itemParagraph">Description of the item </p>
+
+				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
+
+				<div id="ingredients-block">
+					<p class="itemParagraph">some list of ingredients goes here</p>
+				</div>
+
+				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
+
+				<div id="allergies-block">
+					<p class="itemParagraph">some list of allergies goes here</p>
+				</div>
+			</div>
+
+			<div id="order-info-block">
+				<div id="temp-special-instruc-dock">
+					<label for="temp-special-instruc-input">Special Instructions</label>
+					<textarea rows="2" id="temp-special-instruc-input"></textarea>
+				</div>
+
+				<div id="temp-quantity-total-block">
+					<div id="quantity-block">
+						<p id="quantity-name">Quantity: </p>
+						<button id="red-quantity">-</button>
+						<p id="quantity-value">0</p>
+						<button id="add-quantity">+</button>
+					</div>
+
+					<div id="temp-total">
+						<p id="total-display">Total: 0.00$</p>
+					</div>
+
+					<div id="temp-add-to-order">
+						<button id="temp-add-to-order-button">Add to Order</button>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+
+	<!-- Desserts -->
+	<div class="menu-items-dock" id="desserts">
+		<div class="darkGreenBackground roundedBorder" id="expanded-item-dock">
+			<div id="expanded-food-image-dock">
+				<img src="" alt="Food Item Image" id="expanded-food-image">
+			</div>
+
+			<div id="temp-desc">
+				<h4>Some appetizer item.........................Price:0.00$ </h4>
+				<p class="itemParagraph">Description of the item </p>
+
+				<button id="toggle-ingredients" onclick="showIngredients()">Ingredients</button>
+
+				<div id="ingredients-block">
+					<p class="itemParagraph">some list of ingredients goes here</p>
+				</div>
+
+				<button id="toggle-allergies" onclick="showAllergies()">Allergy Warning(s)</button>
+
+				<div id="allergies-block">
+					<p class="itemParagraph">some list of allergies goes here</p>
+				</div>
 			</div>
 
 			<div id="order-info-block">

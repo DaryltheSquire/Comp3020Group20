@@ -3,42 +3,54 @@
 <head>
 	<title>Alice's Burgers</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="index.js"></script>
 </head>
 <body>
+	<!-- Modal that pops up when an order gets placed
+		Needs some information that it shows? And a way to display when its placed and switched-->
+	<div id="submit-order-popup" class="modal">
+		<div class="modal-display">
+			<header>Title of modal</header>
+			<span class="close" onclick="closeModal()">&times;</span>
+			<p>Some text</p>
+		</div>
+	</div>
+	
 	<div id="header-dock">
 		<div class="brickRedBackground" id="title-holder">
-			<h1 id="title-main">Welcome!</h1>
+			<h1 id="title-main">Welcome to Alice's Burgers!</h1>
 		</div>
 	</div>
 
 	<div id="main-menu-grid-container">
 
-	<a href="menu.html?menu=appetizers" class="grid-link">
+	<a href="menu.html?menu=Appetizers" class="grid-link">
 		<span class="grid-item">
 			<p>Appetizers</p>
 		</span>
 	</a>
-	<a href="menu.html?menu=hamburgers" class="grid-link">
+	<a href="menu.html?menu=Hamburgers" class="grid-link">
 		<span class="grid-item">
 			<p>Hamburgers</p>
 		</span>
 	</a>
-	<a href="menu.html?menu=sandwiches" class="grid-link">
+	<a href="menu.html?menu=Sandwiches" class="grid-link">
 		<span class="grid-item">
 			<p>Sandwiches</p>
 		</span>
 	</a>
-	<a href="menu.html?menu=sides" class="grid-link">
+	<a href="menu.html?menu=Sides" class="grid-link">
 		<span class="grid-item">
 			<p>Sides</p>
 		</span>
 	</a>
-	<a href="menu.html?menu=drinks" class="grid-link">
+	<a href="menu.html?menu=Drinks" class="grid-link">
 		<span class="grid-item">
 			<p>Drinks</p>
 		</span>
 	</a>
-	<a href="menu.html?menu=desserts" class="grid-link">
+	<a href="menu.html?menu=Desserts" class="grid-link">
 		<span class="grid-item">
 			<p>Desserts</p>
 		</span>
