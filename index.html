@@ -3,8 +3,20 @@
 <head>
 	<title>Alice's Burgers</title>
 	<link rel="stylesheet" type="text/css" href="index.css">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="index.js"></script>
 </head>
 <body>
+	<!-- Modal that pops up when an order gets placed
+		Needs some information that it shows? And a way to display when its placed and switched-->
+	<div id="submit-order-popup" class="modal">
+		<div class="modal-display">
+			<header>Title of modal</header>
+			<span class="close" onclick="closeModal()">&times;</span>
+			<p>Some text</p>
+		</div>
+	</div>
+	
 	<div id="header-dock">
 		<div class="brickRedBackground" id="title-holder">
 			<h1 id="title-main">Welcome to Alice's Burgers!</h1>

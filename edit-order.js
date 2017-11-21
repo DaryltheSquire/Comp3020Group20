@@ -217,3 +217,15 @@ function createObjectOfItem(itemID, itemEditOrderID){
 
     $("#total").text(newOverallTotal);
 }
+
+function submitOrder(){
+    //move items from current-items to past-items and then clears current-items
+    var currentItems = sessionStorage.getItem("current-items");
+    sessionStorage.setItem("past-items", currentItems);
+    sessionStorage.setItem("current-items", "");
+
+    //needs popup to say their order has been placed
+
+    //Navigate back to home page
+    window.location.assign("index.html");
+}
