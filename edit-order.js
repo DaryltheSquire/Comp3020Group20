@@ -29,8 +29,6 @@ $(document).ready(function(){
 
             if(!itemsAddedBlacklist.includes("id:" + currID + " " + specialInstructions))
             {
-                alert(quantity + " stuff " + specialInstructions + " more stuff " + price);
-
                 displayItem(currID, quantity, specialInstructions, price);
                 itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
             }
