@@ -1,4 +1,5 @@
 var orderedItems = [];  // Store in ram when page remains loaded.
+var orderTotal = 0.00;
 
 $(document).ready(function(){ 
     var url_string = window.location.href;
@@ -228,10 +229,12 @@ function addItemToSideOrder( name, quantity, price ) {
     var item;
     var added = false;
 
+    var newCost = Number( price * quantity );
+
     for( item of orderedItems ) {
         if( item.name == name ) {
             item.quantity = Number( item.quantity ) + Number( quantity );
-            item.total = Number( item.total ) + Number( price * quantity );
+            item.total = Number( item.total ) + newCost;
             added = true;
             updateItemInDisplay( item );
             break;
@@ -244,7 +247,7 @@ function addItemToSideOrder( name, quantity, price ) {
         orderedItems.push( item );
     }
 
-    updateTotal();
+    updateTotal( newCost );
 }
 
 function orderedItem( name, quantity, price ) {
@@ -253,7 +256,8 @@ function orderedItem( name, quantity, price ) {
 }
 
 function updateTotal( amountToChangeBy ) {
-
+    orderTotal += amountToChangeBy;
+    $( "#side-order-total-amount" ).text( orderTotal.toFixed( 2 ) );
 }
 
 function updateItemInDisplay( item ) {

@@ -280,8 +280,16 @@ input, label {
 
 }
 
-#side-order-total-amount {
+#side-order-total-container {
 	float: right;
+}
+
+#side-order-total-dollar-sign {
+	float: left;
+}
+
+#side-order-total-amount {
+	float: left;
 }
 
 #side-order-buttons-block {
