@@ -13,6 +13,8 @@ $(document).ready(function(){
 
     var itemsAddedBlacklist = [];
 
+    alert(currentItems);
+
     //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
     //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
     for(var i = 0; i < splitItems.length; i++){
@@ -21,14 +23,18 @@ $(document).ready(function(){
          
         overallItemInfo = splitItems[i];            
         currID = getItemID(currItemToParse);
-        
+
         if(currID != null) {
             quantity = getQuantity(currentItems, overallItemInfo);
             specialInstructions = getSpecialInstructions(currItemToParse);
             price = getPrice(currItemToParse);
             
-            if(!itemsAddedBlacklist.includes("quantity:" + quantity + " " + specialInstructions))
+            alert(currID);
+
+            if(!itemsAddedBlacklist.includes("id:" + currID + " " + specialInstructions))
             {
+                alert(quantity + " stuff " + specialInstructions + " more stuff " + price);
+
                 displayItem(currID, quantity, specialInstructions, price);
                 itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
             }
