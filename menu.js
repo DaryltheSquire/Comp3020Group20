@@ -144,6 +144,8 @@ var orderedItems = [];
 function loadItemsToSide() {
     //when document is ready, open up session storage, go through each item and then display it
     var currentItems = sessionStorage.getItem("current-items");
+    if( currentItems == null )
+        return;
     currentItems = currentItems.replace("[", "");
     currentItems = currentItems.replace("]", "");
 
@@ -258,7 +260,7 @@ function orderedItem( name, quantity, price ) {
 
 function updateTotal( amountToChangeBy ) {
     orderTotal += amountToChangeBy;
-    $( "#side-order-total-amount" ).text( orderTotal.toFixed( 2 ) );
+    $( "#side-order-total-amount" ).text( Number( orderTotal ).toFixed( 2 ) );
 }
 
 function updateItemInDisplay( item ) {
