@@ -64,12 +64,12 @@ function updateTotal(total_element, quantity){
 		"item-name": "hamburger",
 		"special-instructions": "",
 		"price": 200,
-     },
+     }
 	 {
 		"id": 2,
 		"item-name": "fries",
 		"special-instructions": "No salt",
-		"price": 200,
+		"price": 200
 	 }
     ]
     each new item removes the ], adds a ", " then the new items with a ] ending
