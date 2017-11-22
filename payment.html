@@ -8,19 +8,14 @@
 	<script src="payment.js"></script>
 </head>
 <body>
-	<!--
-	 Header dock
-	 Consistent across all screens (might need a way to enforce this)
-	-->
 	<div id="header-dock" class="brickRedBackground">
 		<!-- TODO: need back button to go to the previous screen -->
 		<div class="center-text-in-item">
 			<h1 id="title-main">Payment</h1>
 		</div>
-		<!-- TODO: need to add the call for help button at the top right -->
+		<!-- TODO: add the call waiter to make payment button here, and have it display modal when clicked -->
 	</div>
 
-	<!-- side scrolling bill thing -->
 	<div id="content">
 		<!-- Bill container template, copy this when making new bills -->
 		<!-- new bills inserted after the last one created -->
@@ -34,6 +29,7 @@
 				</div>
 				<div class="item-container drop">
 					<!-- contains draggable items, generated on page load from session information -->
+					<!-- TODO: remove these placeholder items once item generation is working -->
 					<div class="draggable food-item" id="item-1" data-price="200.00">
 						<p class="item-name">Item 1</p>
 						<p class="item-price">$200.00</p>
@@ -56,7 +52,6 @@
 			</div>
 		</div>
 	</div>
-
 
 	<div id="footer-dock" class="brickRedBackground">
 		<span class="total-all-bills"></span>

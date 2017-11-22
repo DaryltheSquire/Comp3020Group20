@@ -47,12 +47,18 @@ function enableDroppableContainers() {
 	$(".drop").sortable();
 }
 
+//TODO: call this at page load to generate all items
 function generateItemDivs() {
 	var currentItemIndex = 0;
 	// read data from session query
-
 	// create a new div for this and put it in bill 1's container
-	
+	// do this for all items in session storage
+
+	var item_template = 
+		'<div class="draggable food-item" id="item-1" data-price="200.00">\
+			<p class="item-name">Item 1</p>\
+			<p class="item-price">$200.00</p>\
+		</div>'
 }
 
 function createNewBill() {
@@ -70,11 +76,11 @@ function createNewBill() {
 			<div class="bill-footer center-left-text-in-item">\
 				<p class="bill-total-text">Bill ' + numberOfBills + ' total:</p><p class="bill-total-price-value">$0.00</p>\
 			</div>\
-		</div>\
-		'
+		</div>'
 	return template_billContainer;
 }
 
+//TODO: allow for deleting the last created bill
 function deleteBill() {
 	// add any items in this bill back to bill 1
 
@@ -85,21 +91,14 @@ function deleteBill() {
 }
 
 function recalculateBillTotals() {
-	// select all paragraphs with bill totals
 	$(".bill-total-price-value").each(function() {
 		var billTotal = 0.00;
 
 		$(this).closest(".bill-container").find('.food-item').each(function() {
 			var item_price = parseFloat($(this).attr("data-price"));
-			console.log(item_price);
 			billTotal += item_price;
 		});
 
-		$(this).text('$' + parseFloat(billTotal, 10).toFixed(2));
+		$(this).text('$' + billTotal.toFixed(2));
 	})
-	// for each of bill totals
-		// select the parent container
-		// select all of the items contained within it
-		// sum all of the items
-		// set the paragraph value as the sum
 }
