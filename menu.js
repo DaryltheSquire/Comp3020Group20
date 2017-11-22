@@ -64,12 +64,12 @@ function updateTotal(total_element, quantity){
 		"item-name": "hamburger",
 		"special-instructions": "",
 		"price": 200,
-     },
+     }
 	 {
 		"id": 2,
 		"item-name": "fries",
 		"special-instructions": "No salt",
-		"price": 200,
+		"price": 200
 	 }
     ]
     each new item removes the ], adds a ", " then the new items with a ] ending
@@ -117,6 +117,14 @@ function addToOrder(itemNumber){
     //Gets the current item, and saves the layout in sessionStorage
     var itemAsHTML = document.getElementById("item-"+itemNumber).outerHTML;
 
+    resetItemAfterOrder(itemNumber);
+
     sessionStorage.setItem(itemNumber, itemAsHTML);
     //needs a way to update the side order tab
+}
+
+function resetItemAfterOrder(itemID){
+    $("#special-instruc-" + itemID).val("");
+    $("#quantity-" + itemID).text("0");
+    $("#total-" + itemID).text("Total: 0.00$");
 }

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Pay for Order</title>
+	<link rel="stylesheet" type="text/css" href="payment.css">
+	<script src="jquery-3.2.1.min.js"></script>
+	<script src="jquery-ui.min.js"></script>
+	<script src="payment.js"></script>
+</head>
+<body>
+	<div id="header-dock" class="brickRedBackground">
+		<!-- TODO: need back button to go to the previous screen -->
+		<div class="center-text-in-item">
+			<h1 id="title-main">Payment</h1>
+		</div>
+		<!-- TODO: add the call waiter to make payment button here, and have it display modal when clicked -->
+	</div>
+
+	<div id="content">
+		<!-- Bill container template, copy this when making new bills -->
+		<!-- new bills inserted after the last one created -->
+		<!-- bill 1 can never be deleted -->
+		<div id="scrolling-container">
+			<div class="bill-container" id="bill1">
+				<div class="bill-header">
+					<div class="center-text-in-item">
+						<p class="bill-header-title">Bill 1</p>
+					</div>
+				</div>
+				<div class="item-container drop">
+					<!-- contains draggable items, generated on page load from session information -->
+					<!-- TODO: remove these placeholder items once item generation is working -->
+					<div class="draggable food-item" id="item-1" data-price="200.00">
+						<p class="item-name">Item 1</p>
+						<p class="item-price">$200.00</p>
+					</div>
+					<div class="draggable food-item" id="item-2" data-price="100.00">
+						<p class="item-name">Item 2</p>
+						<p class="item-price">$100.00</p>
+					</div>
+				</div>
+				<div class="bill-footer center-left-text-in-item">
+					<p class="bill-total-text">Bill 1 total: </p><p class="bill-total-price-value">$0.00</p>
+				</div>
+			</div>
+
+			<div class="bill-container" id="add-new-bill-button">
+				<div class="center-text-in-item">
+					<!-- TODO: when tapped, this should create a new bill -->
+					<h3>Tap here to add a separate bill</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div id="footer-dock" class="brickRedBackground">
+		<span class="total-all-bills"></span>
+		<span id="call-waiter-for-payment-button"></span>
+	</div>
+</body>
+</html>
