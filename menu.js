@@ -1,11 +1,4 @@
-// I will need to store the items in the session storage eventually.
-// Just do that and then load the array when the page is loaded, store the array when the page is changed.
-
-// Change it to not load the info at all? Just place it in the side order?
-
-// var elementHtml = element.outerHTML; to get the entire string representation of the element.
-
-var orderedItems = [];
+var orderedItems = [];  // Store in ram when page remains loaded.
 
 $(document).ready(function(){ 
     var url_string = window.location.href;
@@ -302,8 +295,4 @@ function addItemToDisplay( item ) {
     div.appendChild( p1 );
     div.appendChild( p2 );
     div.appendChild( p3 );
-}
-
-function refreshDisplay() {
- 
 }
