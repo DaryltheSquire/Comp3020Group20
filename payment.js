@@ -11,8 +11,22 @@ var numberOfBills = 1;
 
 $(document).ready(function(e) {
 	generateItemDivs();  
-	$(".draggable").draggable({cursor: "crosshair", revert: "invalid"});
 
+	enableDraggableContainers();
+	enableDroppableContainers();
+
+	$("#add-new-bill-button").click(function(event) {
+		var newBill = createNewBill();
+		$("#add-new-bill-button").before(newBill);
+		enableDroppableContainers(); //must enable droppable on new items
+	});
+});
+
+function enableDraggableContainers() {
+	$(".draggable").draggable({cursor: "crosshair", revert: "invalid"});
+}
+
+function enableDroppableContainers() {
 	$(".drop").droppable({ accept: ".draggable", 
 		drop: function(event, ui) {
 			var dropped = ui.draggable;
@@ -28,12 +42,7 @@ $(document).ready(function(e) {
 		}
 	});
 	$(".drop").sortable();
-
-	$("#add-new-bill-button").click(function(event) {
-		var newBill = createNewBill();
-		$("#add-new-bill-button").before(newBill);
-	});
-});
+}
 
 function generateItemDivs() {
 	var currentItemIndex = 0;
@@ -51,13 +60,13 @@ function createNewBill() {
 		'<div class="bill-container" id="bill-' + numberOfBills + '">\
 			<div class="bill-header">\
 				<div class="center-text-in-item">\
-					<p class="bill-header-title"></p>\
+					<p class="bill-header-title">Bill ' + numberOfBills + '</p>\
 				</div>\
 			</div>\
 			<div class="item-container drop"></div>\
 			<div class="bill-footer">\
 				<div class="center-left-text-in-item">\
-					<p class="bill-total-text"></p><p id="bill-total-' + numberOfBills + '"></p>\
+					<p class="bill-total-text">Bill ' + numberOfBills + ' total:</p><p id="bill-total-' + numberOfBills + '"></p>\
 				</div>\
 			</div>\
 		</div>\
