@@ -7,10 +7,6 @@ Styles for payment screen
 Temporary testing styles
 --------------------------------------------*/
 
-#add-new-bill-button {
-	background-color: #ffaaff;
-}
-
 #call-waiter-for-payment-button {
 	background-color: #5FD529;
 	width: 100px;
@@ -98,6 +94,12 @@ Body/Content
 	height: 100%;
 }
 
+#add-new-bill-button {
+	background-color: #e0ffe0;
+	border: 3px dashed;
+	border-radius: 6px;
+}
+
 .bill-container {
 	width: 300px;
 	height: 90%;
@@ -151,6 +153,30 @@ Body/Content
 	height: 40px;
 	background-color: #999999;
 	margin: 2px 0 2px 0;
+}
+
+.item-name {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.item-price {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.bill-total-text {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.bill-total-price-value {
+	position: absolute;
+	top: 0;
+	right: 0;
 }
 
 /*--------------------------------------------

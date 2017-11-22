@@ -20,6 +20,8 @@ $(document).ready(function(e) {
 		$("#add-new-bill-button").before(newBill);
 		enableDroppableContainers(); //must enable droppable on new items
 	});
+
+	recalculateBillTotals();
 });
 
 function enableDraggableContainers() {
@@ -33,6 +35,7 @@ function enableDroppableContainers() {
 			var droppedOn = $(this);
 			$(dropped).detach().css({top: 0,left: 0}).appendTo(droppedOn);      
 			$(this).removeClass("drag-over");
+			recalculateBillTotals();
 		}, 
 		over: function(event, elem) {
 			$(this).addClass("drag-over");
@@ -64,10 +67,8 @@ function createNewBill() {
 				</div>\
 			</div>\
 			<div class="item-container drop"></div>\
-			<div class="bill-footer">\
-				<div class="center-left-text-in-item">\
-					<p class="bill-total-text">Bill ' + numberOfBills + ' total:</p><p id="bill-total-' + numberOfBills + '"></p>\
-				</div>\
+			<div class="bill-footer center-left-text-in-item">\
+				<p class="bill-total-text">Bill ' + numberOfBills + ' total:</p><p class="bill-total-price-value">$0.00</p>\
 			</div>\
 		</div>\
 		'
@@ -78,6 +79,27 @@ function deleteBill() {
 	// add any items in this bill back to bill 1
 
 	// recalculate any totals
+	recalculateBillTotals();
 
 	// remove the bill div
+}
+
+function recalculateBillTotals() {
+	// select all paragraphs with bill totals
+	$(".bill-total-price-value").each(function() {
+		var billTotal = 0.00;
+
+		$(this).closest(".bill-container").find('.food-item').each(function() {
+			var item_price = parseFloat($(this).attr("data-price"));
+			console.log(item_price);
+			billTotal += item_price;
+		});
+
+		$(this).text('$' + parseFloat(billTotal, 10).toFixed(2));
+	})
+	// for each of bill totals
+		// select the parent container
+		// select all of the items contained within it
+		// sum all of the items
+		// set the paragraph value as the sum
 }

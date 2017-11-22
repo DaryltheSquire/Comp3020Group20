@@ -34,13 +34,17 @@
 				</div>
 				<div class="item-container drop">
 					<!-- contains draggable items, generated on page load from session information -->
-					<div class="draggable drag-test" id="item-1">Item 1</div>
-					<div class="draggable drag-test" id="item-2">Item 2</div>
-				</div>
-				<div class="bill-footer">
-					<div class="center-left-text-in-item">
-						<p>Bill 1 total: </p><p id="bill-1-total"></p>
+					<div class="draggable food-item" id="item-1" data-price="200.00">
+						<p class="item-name">Item 1</p>
+						<p class="item-price">$200.00</p>
 					</div>
+					<div class="draggable food-item" id="item-2" data-price="100.00">
+						<p class="item-name">Item 2</p>
+						<p class="item-price">$100.00</p>
+					</div>
+				</div>
+				<div class="bill-footer center-left-text-in-item">
+					<p class="bill-total-text">Bill 1 total: </p><p class="bill-total-price-value">$0.00</p>
 				</div>
 			</div>
 
@@ -51,8 +55,6 @@
 				</div>
 			</div>
 		</div>
-
-		<span id="add-new-bill-button"></span>
 	</div>
 
 
@@ -60,25 +62,5 @@
 		<span class="total-all-bills"></span>
 		<span id="call-waiter-for-payment-button"></span>
 	</div>
-
-	<!--
-	 Idea:
-	 For each of the items that were in the order, 
-	 	create an element for it, that has an image, and the price total
-	 	give it an attribute called draggable and set it to true
-	 	put all of the draggable items in the first box
-	 	have a button for adding new order pay boxes
-		then allow dragging between boxes:
-
-		 	then do something like this:
-		 	function drag(ev) {
-			    ev.dataTransfer.setData("text", ev.target.id);
-			}
-			follow the instructions here:
-			https://www.w3schools.com/html/html5_draganddrop.asp
-
-		then, when a draggable object is released, must recalculate price totals for all boxes
-	-->
-
 </body>
 </html>
