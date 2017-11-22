@@ -257,7 +257,7 @@ function orderedItem( name, quantity, price ) {
 
 function updateTotal( amountToChangeBy ) {
     orderTotal += amountToChangeBy;
-    $( "#side-order-total-amount" ).text( orderTotal.toFixed( 2 ) );
+    $( "#side-order-total-amount" ).text( Number( orderTotal ).toFixed( 2 ) );
 }
 
 function updateItemInDisplay( item ) {
