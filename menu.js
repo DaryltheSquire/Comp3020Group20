@@ -249,7 +249,7 @@ function addItemToSideOrder( name, quantity, price ) {
         orderedItems.push( item );
     }
 
-    updateTotal( newCost );
+    updateSideTotal( newCost );
 }
 
 function orderedItem( name, quantity, price ) {
@@ -257,7 +257,7 @@ function orderedItem( name, quantity, price ) {
     return item;
 }
 
-function updateTotal( amountToChangeBy ) {
+function updateSideTotal( amountToChangeBy ) {
     orderTotal += amountToChangeBy;
     $( "#side-order-total-amount" ).text( Number( orderTotal ).toFixed( 2 ) );
 }
