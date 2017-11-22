@@ -9,6 +9,9 @@ Global page variables
 
 var numberOfBills = 1;
 
+/*--------------------------------------------
+Document initialization
+--------------------------------------------*/
 $(document).ready(function(e) {
 	generateItemDivs();  
 
@@ -23,6 +26,10 @@ $(document).ready(function(e) {
 
 	recalculateBillTotals();
 });
+
+/*--------------------------------------------
+Payment functions
+--------------------------------------------*/
 
 function enableDraggableContainers() {
 	$(".draggable").draggable({cursor: "crosshair", revert: "invalid"});
@@ -101,4 +108,24 @@ function recalculateBillTotals() {
 
 		$(this).text('$' + billTotal.toFixed(2));
 	})
+}
+
+/*--------------------------------------------
+Button click functions
+--------------------------------------------*/
+
+function goBack() {
+	window.history.back();
+}
+
+function callWaiterForPayment() {
+    document.getElementById('call-payment-popup').style.display = "block";
+
+    setTimeout(function(){
+        $('#call-payment-popup').hide();
+    }, 5000);
+}
+
+function closeModal() {
+    $('#call-payment-popup').hide();
 }
