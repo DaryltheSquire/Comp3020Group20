@@ -1,32 +1,7 @@
 $(document).ready(function(){ 
     //when document is ready, open up session storage, go through each item and then display it
     var currentItemsRawData = sessionStorage.getItem("current-items");
-
     var currentItems = JSON.parse(currentItemsRawData);
-
-    console.log(currentItems);
-
-//     id
-// :
-// 1
-// item-name
-// :
-// "Hush Puppies"
-// price
-// :
-// 0
-// special-instructions
-// :
-// ""
-    var currID
-
-    var currItemToParse;
-    var currID;
-    var quantity;
-    var overallItemInfo;
-    var specialInstructions;
-
-    var itemsAddedBlacklist = [];
 
     var distinctItems = {};
 
@@ -51,14 +26,11 @@ $(document).ready(function(){
         distinctItems[quantKey]["quantity"]++;
     }
 
-    console.log(distinctItems);
-
-    //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
-    //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
+    // Creates an item display for it once all the info is found, as well as updates the overall total
     for (var key in distinctItems) {
         displayItem(distinctItems[key]["id"], distinctItems[key]["quantity"], distinctItems[key]["special-instructions"], distinctItems[key]["price"]);        
     }
- });
+});
  
 var nextID = 1;
 
@@ -121,6 +93,7 @@ function displayItem(itemID, quantity, specialInstructions, price){
      }
  }
  
+ // TODO need to make sure this still works with new data structuring
  function addQuantity(quantity_element){
      var currQuantity = parseInt($("#quantity-" + quantity_element).text());
  
