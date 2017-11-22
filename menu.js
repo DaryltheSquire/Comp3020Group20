@@ -1,8 +1,13 @@
+var orderedItems = [];  // Store in ram when page remains loaded.
+var orderTotal = 0.00;
+
 $(document).ready(function(){ 
     var url_string = window.location.href;
     var url = new URL(url_string);
     var menu = url.searchParams.get("menu");
     document.title = menu;
+
+    loadItemsToSide();
 
     showMenu(menu);
 });
@@ -110,6 +115,10 @@ function addToOrder(itemNumber){
             currentItems = currentItems.slice(0, -1);
             currentItems += currItem + "]";
         }
+
+        if( i == 0 ) {
+            addItemToSideOrder( itemName, quantity, price );
+        }
     }
 
     sessionStorage.setItem("current-items", currentItems);
@@ -127,4 +136,169 @@ function resetItemAfterOrder(itemID){
     $("#special-instruc-" + itemID).val("");
     $("#quantity-" + itemID).text("0");
     $("#total-" + itemID).text("Total: 0.00$");
+}
+
+var orderedItems = [];
+
+function loadItemsToSide() {
+    //when document is ready, open up session storage, go through each item and then display it
+    var currentItems = sessionStorage.getItem("current-items");
+    if( currentItems == null )
+        return;
+    currentItems = currentItems.replace("[", "");
+    currentItems = currentItems.replace("]", "");
+
+    var splitItems = currentItems.split("}");
+    var currItemToParse;
+    var currID;
+    var quantity;
+    var overallItemInfo;
+    var specialInstructions;
+    var itemName;
+
+    var itemsAddedBlacklist = [];
+
+    //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
+    //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
+    for(var i = 0; i < splitItems.length; i++){
+        splitItems[i] = splitItems[i].replace("{", "");
+        currItemToParse = splitItems[i].split(",");
+         
+        overallItemInfo = splitItems[i];            
+        currID = getItemID(currItemToParse);
+        
+        if(currID != null) {
+            itemName = getItemName( currItemToParse );
+            quantity = getQuantity(currentItems, overallItemInfo);
+            specialInstructions = getSpecialInstructions(currItemToParse);
+            price = getPrice(currItemToParse);
+            
+            if(!itemsAddedBlacklist.includes("quantity:" + quantity + " " + specialInstructions))
+            {
+                addItemToSideOrder(itemName, quantity, price);
+                itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
+            }
+        }
+        
+    }
+}
+
+function getItemName( itemToParse ) {
+    var itemName = "item-name:";
+    for( var i = 0; i < itemToParse.length; i++ ) {
+        if( itemToParse[i].includes( itemName ) ) {
+            return itemToParse[i].substr( itemName.length )
+        }
+    }
+}
+
+function getPrice(itemToParse){
+    for(var j = 0; j < itemToParse.length; j++){
+        if(itemToParse[j].includes("price:")){
+            return itemToParse[j].replace("price:", ""); 
+        }
+    }
+}
+
+ function getSpecialInstructions(itemToParse){
+     var specialInstruc = "special-instructions:"
+     for(var j = 0; j < itemToParse.length; j++){
+         if(itemToParse[j].includes("special-instructions:")){
+             return itemToParse[j].substr(specialInstruc.length); //removes special instructions text and returns 
+         }
+     }
+ }
+ 
+ function getQuantity(currentItems, itemInfo){
+     var tempQuantityCheck = currentItems.split(itemInfo);
+     
+     return tempQuantityCheck.length - 1;
+ }
+
+//Parses the item for an ID
+function getItemID(itemToParse){
+    for(var j = 0; j < itemToParse.length; j++){
+        if(itemToParse[j].includes("id:")){
+            tempID = itemToParse[j].split(":");
+            tempID = tempID[1].replace(",", "");
+
+            return tempID; //ID of the item
+        }
+    }
+}
+
+function addItemToSideOrder( name, quantity, price ) {
+    var item;
+    var added = false;
+
+    var newCost = Number( price * quantity );
+
+    for( item of orderedItems ) {
+        if( item.name == name ) {
+            item.quantity = Number( item.quantity ) + Number( quantity );
+            item.total = Number( item.total ) + newCost;
+            added = true;
+            updateItemInDisplay( item );
+            break;
+        }
+    }
+
+    if( !added ) {
+        item = orderedItem( name, quantity, price );  
+        addItemToDisplay( item );
+        orderedItems.push( item );
+    }
+
+    updateTotal( newCost );
+}
+
+function orderedItem( name, quantity, price ) {
+    var item = { name:name, quantity:quantity, total:price * quantity }
+    return item;
+}
+
+function updateTotal( amountToChangeBy ) {
+    orderTotal += amountToChangeBy;
+    $( "#side-order-total-amount" ).text( Number( orderTotal ).toFixed( 2 ) );
+}
+
+function updateItemInDisplay( item ) {
+    var p2_id = "side-order-item-quantity_" + item.name;
+    var p3_id = "side-order-item-cost_" + item.name;
+    var p2 = document.getElementById( p2_id ).textContent = "X" + item.quantity;
+
+    var p3 = document.getElementById( p3_id ).textContent = "$" + item.total;
+}
+
+function addItemToDisplay( item ) {
+    var div_id = "side-order-item_" + item.name;
+    var p1_id = "side-order-item-name_" + item.name;
+    var p2_id = "side-order-item-quantity_" + item.name;
+    var p3_id = "side-order-item-cost_" + item.name;
+
+    var div = document.createElement("div");
+    div.id = div_id;
+    div.className = "side-order-item";
+
+    var parent = document.getElementsByClassName( "side-order-items-block" );
+    parent[0].appendChild( div );
+
+    var p1 = document.createElement("P");
+    p1.id = p1_id;
+    p1.className = "side-order-item-name";
+    p1.textContent = item.name;
+
+    var p2 = document.createElement("P");
+    p2.id = p2_id;
+    p2.className = "side-order-item-quantity";
+    p2.textContent = "X" + item.quantity;
+
+    var p3 = document.createElement("P");
+    p3.id = p3_id;
+    p3.className = "side-order-item-cost";
+    p3.textContent = "$" + item.total;
+
+    div.appendChild( p1 );
+    div.appendChild( p2 );
+    div.appendChild( p3 );
 }

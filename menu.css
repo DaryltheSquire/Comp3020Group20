@@ -239,7 +239,11 @@ input, label {
 	padding: 0px;
 }
 
-#side-order-item {
+.side-order-items-block {
+	height: 75%;
+}
+
+.side-order-item {
 	width: 90%;
 	height: 15%;
 	margin-left: 5%;
@@ -247,25 +251,22 @@ input, label {
 	border-bottom: thin solid;
 }
 
-#side-order-item-top {
-	height: 75%;
-}
-
-#side-order-item-name {
+.side-order-item-name {
 	float: left;
 }
 
-#side-order-item-cost {
+.side-order-item-quantity {
+	float: left;
+	margin-left: 5%;
+	position: relative;
+}
+
+.side-order-item-cost {
 	float: right;
 }
 
 #side-order-item-bottom {
 	height: 25%
-}
-
-#side-order-item-desc {
-	font-size: 10px;
-	float: left;
 }
 
 #side-order-total {
@@ -279,13 +280,21 @@ input, label {
 
 }
 
-#side-order-total-amount {
+#side-order-total-container {
 	float: right;
+}
+
+#side-order-total-dollar-sign {
+	float: left;
+}
+
+#side-order-total-amount {
+	float: left;
 }
 
 #side-order-buttons-block {
 	float: left;
-	margin-left: 3%;
+	margin-left: 8.5%;
 }
 
 #side-order-edit-button {
