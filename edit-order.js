@@ -55,8 +55,8 @@ $(document).ready(function(){
 
     //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
     //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
-    for (var i = 0; i < distinctItems.length; i++) {
-        displayItem(distinctItems[i]["id"], distinctItems[i]["quantity"], distinctItems[i]["special-instructions"], distinctItems[i]["price"]);        
+    for (var key in distinctItems) {
+        displayItem(distinctItems[key]["id"], distinctItems[key]["quantity"], distinctItems[key]["special-instructions"], distinctItems[key]["price"]);        
     }
  });
  
