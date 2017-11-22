@@ -1,10 +1,25 @@
 $(document).ready(function(){ 
     //when document is ready, open up session storage, go through each item and then display it
-    var currentItems = sessionStorage.getItem("current-items");
-    currentItems = currentItems.replace("[", "");
-    currentItems = currentItems.replace("]", "");
+    var currentItemsRawData = sessionStorage.getItem("current-items");
 
-    var splitItems = currentItems.split("}");
+    var currentItems = JSON.parse(currentItemsRawData);
+
+    console.log(currentItems);
+
+//     id
+// :
+// 1
+// item-name
+// :
+// "Hush Puppies"
+// price
+// :
+// 0
+// special-instructions
+// :
+// ""
+    var currID
+
     var currItemToParse;
     var currID;
     var quantity;
@@ -13,27 +28,35 @@ $(document).ready(function(){
 
     var itemsAddedBlacklist = [];
 
+    var distinctItems = {};
+
+    for (var i = currentItems.length - 1; i >= 0; i--) {
+        var itemID = currentItems[i]["id"];
+        var itemName = currentItems[i]["item-name"];
+        var specialInstructions = currentItems[i]["special-instructions"];
+        var price = currentItems[i]["price"];
+
+        var quantKey = itemID + "-" + specialInstructions; //e.g., 1-Hush Puppies, or simply 1- with no instructions
+
+        // Hack, creates new json objects to store original items with no duplicates, instead using quantity values.
+        if (!distinctItems[quantKey]) {
+            distinctItems[quantKey] = {
+                "id": itemID,
+                "special-instructions": specialInstructions,
+                "price": price,
+                "quantity": 0
+            };
+        }
+
+        distinctItems[quantKey]["quantity"]++;
+    }
+
+    console.log(distinctItems);
+
     //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
     //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
-    for(var i = 0; i < splitItems.length; i++){
-        splitItems[i] = splitItems[i].replace("{", "");
-        currItemToParse = splitItems[i].split(",");
-         
-        overallItemInfo = splitItems[i];            
-        currID = getItemID(currItemToParse);
-        
-        if(currID != null) {
-            quantity = getQuantity(currentItems, overallItemInfo);
-            specialInstructions = getSpecialInstructions(currItemToParse);
-            price = getPrice(currItemToParse);
-            
-            if(!itemsAddedBlacklist.includes("quantity:" + quantity + " " + specialInstructions))
-            {
-                displayItem(currID, quantity, specialInstructions, price);
-                itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
-            }
-        }
-        
+    for (var i = 0; i < distinctItems.length; i++) {
+        displayItem(distinctItems[i]["id"], distinctItems[i]["quantity"], distinctItems[i]["special-instructions"], distinctItems[i]["price"]);        
     }
  });
  
@@ -79,42 +102,7 @@ function displayItem(itemID, quantity, specialInstructions, price){
 
     updateOverallTotal(itemTotal);
 }
- 
-function getPrice(itemToParse){
-    for(var j = 0; j < itemToParse.length; j++){
-        if(itemToParse[j].includes("price:")){
-            return itemToParse[j].replace("price:", ""); 
-        }
-    }
-}
 
- function getSpecialInstructions(itemToParse){
-     var specialInstruc = "special-instructions:"
-     for(var j = 0; j < itemToParse.length; j++){
-         if(itemToParse[j].includes("special-instructions:")){
-             return itemToParse[j].substr(specialInstruc.length); //removes special instructions text and returns 
-         }
-     }
- }
- 
- function getQuantity(currentItems, itemInfo){
-     var tempQuantityCheck = currentItems.split(itemInfo);
-     
-     return tempQuantityCheck.length - 1;
- }
- 
- //Parses the item for an ID
- function getItemID(itemToParse){
-     for(var j = 0; j < itemToParse.length; j++){
-         if(itemToParse[j].includes("id:")){
-             tempID = itemToParse[j].split(":");
-             tempID = tempID[1].replace(",", "");
- 
-             return tempID; //ID of the item
-         }
-     }
- }
- 
  function showIngredients(ingredients_block){
      if($("#ingredients-" + ingredients_block).is(":visible")){
          $("#ingredients-" + ingredients_block).hide();
