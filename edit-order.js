@@ -21,14 +21,16 @@ $(document).ready(function(){
          
         overallItemInfo = splitItems[i];            
         currID = getItemID(currItemToParse);
-        
+
         if(currID != null) {
             quantity = getQuantity(currentItems, overallItemInfo);
             specialInstructions = getSpecialInstructions(currItemToParse);
             price = getPrice(currItemToParse);
-            
-            if(!itemsAddedBlacklist.includes("quantity:" + quantity + " " + specialInstructions))
+
+            if(!itemsAddedBlacklist.includes("id:" + currID + " " + specialInstructions))
             {
+                alert(quantity + " stuff " + specialInstructions + " more stuff " + price);
+
                 displayItem(currID, quantity, specialInstructions, price);
                 itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
             }

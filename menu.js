@@ -173,7 +173,7 @@ function loadItemsToSide() {
             specialInstructions = getSpecialInstructions(currItemToParse);
             price = getPrice(currItemToParse);
             
-            if(!itemsAddedBlacklist.includes("quantity:" + quantity + " " + specialInstructions))
+            if(!itemsAddedBlacklist.includes("id:" + currID + " " + specialInstructions))
             {
                 addItemToSideOrder(itemName, quantity, price);
                 itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
