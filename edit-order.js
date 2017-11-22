@@ -1,6 +1,11 @@
 $(document).ready(function(){ 
-    //when document is ready, open up session storage, go through each item and then display it
+    // when document is ready, open up session storage, go through each item and then display it
+    // if session storage doesn't have current items, don't do anything. (or, display message?)
     var currentItemsRawData = sessionStorage.getItem("current-items");
+
+    if (currentItemsRawData === null)
+        return;
+    
     var currentItems = JSON.parse(currentItemsRawData);
 
     var distinctItems = {};
