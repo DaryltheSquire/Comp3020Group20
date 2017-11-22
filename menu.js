@@ -143,6 +143,8 @@ var orderedItems = [];
 function loadItemsToSide() {
     //when document is ready, open up session storage, go through each item and then display it
     var currentItems = sessionStorage.getItem("current-items");
+    if( currentItems == null )
+        return;
     currentItems = currentItems.replace("[", "");
     currentItems = currentItems.replace("]", "");
 
