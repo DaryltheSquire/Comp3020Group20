@@ -143,89 +143,42 @@ var orderedItems = [];
 
 function loadItemsToSide() {
     //when document is ready, open up session storage, go through each item and then display it
-    var currentItems = sessionStorage.getItem("current-items");
-    if( currentItems == null )
+    var currentItemsRaw = sessionStorage.getItem("current-items");
+    if(!currentItemsRaw)
         return;
-    currentItems = currentItems.replace("[", "");
-    currentItems = currentItems.replace("]", "");
 
-    var splitItems = currentItems.split("}");
-    var currItemToParse;
-    var currID;
-    var quantity;
-    var overallItemInfo;
-    var specialInstructions;
-    var itemName;
+    var currentItems = JSON.parse(currentItemsRaw);
 
-    var itemsAddedBlacklist = [];
+    var distinctItems = {};
 
-    //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
-    //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
-    for(var i = 0; i < splitItems.length; i++){
-        splitItems[i] = splitItems[i].replace("{", "");
-        currItemToParse = splitItems[i].split(",");
-         
-        overallItemInfo = splitItems[i];            
-        currID = getItemID(currItemToParse);
+    for (var i = currentItems.length - 1; i >= 0; i--) {
+        var itemID = currentItems[i]["id"];
+        var itemName = currentItems[i]["item-name"];
+        var specialInstructions = currentItems[i]["special-instructions"];
+        var price = currentItems[i]["price"];
+
+        var quantKey = itemID + "-" + specialInstructions; //e.g., 1-Hush Puppies, or simply 1- with no instructions
+
+        // Hack, creates new json objects to store original items with no duplicates, instead using quantity values.
+        if (!distinctItems[quantKey]) {
+            distinctItems[quantKey] = {
+                "id": itemID,
+                "item-name": itemName,
+                "special-instructions": specialInstructions,
+                "price": price,
+                "quantity": 0
+            };
+        }
+
+        distinctItems[quantKey]["quantity"]++;
+    }
+
+    // Creates an item display for it once all the info is found, as well as updates the overall total
+    for (var key in distinctItems) {
+        addItemToSideOrder(distinctItems[key]["item-name"], distinctItems[key]["quantity"], distinctItems[key]["price"]);
+    }
         
-        if(currID != null) {
-            itemName = getItemName( currItemToParse );
-            quantity = getQuantity(currentItems, overallItemInfo);
-            specialInstructions = getSpecialInstructions(currItemToParse);
-            price = getPrice(currItemToParse);
-            
-            if(!itemsAddedBlacklist.includes("id:" + currID + " " + specialInstructions))
-            {
-                addItemToSideOrder(itemName, quantity, price);
-                itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
-            }
-        }
-        
-    }
-}
-
-function getItemName( itemToParse ) {
-    var itemName = "item-name:";
-    for( var i = 0; i < itemToParse.length; i++ ) {
-        if( itemToParse[i].includes( itemName ) ) {
-            return itemToParse[i].substr( itemName.length )
-        }
-    }
-}
-
-function getPrice(itemToParse){
-    for(var j = 0; j < itemToParse.length; j++){
-        if(itemToParse[j].includes("price:")){
-            return itemToParse[j].replace("price:", ""); 
-        }
-    }
-}
-
- function getSpecialInstructions(itemToParse){
-     var specialInstruc = "special-instructions:"
-     for(var j = 0; j < itemToParse.length; j++){
-         if(itemToParse[j].includes("special-instructions:")){
-             return itemToParse[j].substr(specialInstruc.length); //removes special instructions text and returns 
-         }
-     }
- }
- 
- function getQuantity(currentItems, itemInfo){
-     var tempQuantityCheck = currentItems.split(itemInfo);
-     
-     return tempQuantityCheck.length - 1;
- }
-
-//Parses the item for an ID
-function getItemID(itemToParse){
-    for(var j = 0; j < itemToParse.length; j++){
-        if(itemToParse[j].includes("id:")){
-            tempID = itemToParse[j].split(":");
-            tempID = tempID[1].replace(",", "");
-
-            return tempID; //ID of the item
-        }
-    }
+    
 }
 
 function addItemToSideOrder( name, quantity, price ) {
