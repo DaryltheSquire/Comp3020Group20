@@ -59,7 +59,7 @@ function reduceQuantity(quantity_element){
 
 function updateTotal(total_element, quantity){
     var total = parseFloat(quantity * parseFloat($("#price-" + total_element).text())).toFixed(2);
-    $("#total-" + total_element).text("Total: " + total + "$");
+    $("#total-" + total_element).text("Total: $" + total);
 }
 
 /* Cookies format:
@@ -138,7 +138,7 @@ function addToOrder(itemNumber){
 function resetItemAfterOrder(itemID){
     $("#special-instruc-" + itemID).val("");
     $("#quantity-" + itemID).text("0");
-    $("#total-" + itemID).text("Total: 0.00$");
+    $("#total-" + itemID).text("Total: $0.00");
 }
 
 function loadItemsToSide() {
