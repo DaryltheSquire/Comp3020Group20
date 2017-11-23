@@ -59,7 +59,7 @@ function reduceQuantity(quantity_element){
 
 function updateTotal(total_element, quantity){
     var total = parseFloat(quantity * parseFloat($("#price-" + total_element).text())).toFixed(2);
-    $("#total-" + total_element).text("Total: " + total + "$");
+    $("#total-" + total_element).text("Total: $" + total);
 }
 
 /* Cookies format:
@@ -80,7 +80,7 @@ function updateTotal(total_element, quantity){
     each new item removes the ], adds a ", " then the new items with a ] ending
 */
 function addToOrder(itemNumber){
-    /*  add quantity number of those items to the cookies
+    /*  add quantity number of those items to the session storage
         id is itemNumber
         item-name is gotten by $("#name-" + itemNumber)
         special-instructions is by $("#special-instruc-" + itemNumber)
@@ -104,16 +104,19 @@ function addToOrder(itemNumber){
         specialInstructions = $("#special-instruc-" + itemNumber).val();
         price = $("#price-" + itemNumber).text();
 
-        currItem = "{id:" + itemNumber + ",item-name:" + itemName + ",special-instructions:" + specialInstructions + 
-        ",price:" + price + "}";
+        currItem = 
+            '{"id": '+ itemNumber + ', "item-name": "' + itemName + '", "special-instructions": "' + specialInstructions + '", "price": ' + price +'}';
 
-        if(currentItems === "[]"){
-            currentItems = currentItems.slice(0, -1);
-            currentItems += currItem + "]";
+        // Add comma before currItem there are already items in the list, for JSON compatibility
+        if (!currentItems)
+            currentItems = "[]";
+        if (currentItems === "[]"){
+            currentItems = currentItems.slice(0, -1); // remove the last bracket
+            currentItems += currItem + "]"; // add current item then re-add the array end bracket
         }
         else {
             currentItems = currentItems.slice(0, -1);
-            currentItems += currItem + "]";
+            currentItems += ", " + currItem + "]";
         }
 
         if( i == 0 ) {
@@ -135,95 +138,44 @@ function addToOrder(itemNumber){
 function resetItemAfterOrder(itemID){
     $("#special-instruc-" + itemID).val("");
     $("#quantity-" + itemID).text("0");
-    $("#total-" + itemID).text("Total: 0.00$");
+    $("#total-" + itemID).text("Total: $0.00");
 }
-
-var orderedItems = [];
 
 function loadItemsToSide() {
     //when document is ready, open up session storage, go through each item and then display it
-    var currentItems = sessionStorage.getItem("current-items");
-    if( currentItems == null )
+    var currentItemsRaw = sessionStorage.getItem("current-items");
+    if(!currentItemsRaw)
         return;
-    currentItems = currentItems.replace("[", "");
-    currentItems = currentItems.replace("]", "");
 
-    var splitItems = currentItems.split("}");
-    var currItemToParse;
-    var currID;
-    var quantity;
-    var overallItemInfo;
-    var specialInstructions;
-    var itemName;
+    var currentItems = JSON.parse(currentItemsRaw);
 
-    var itemsAddedBlacklist = [];
+    var distinctItems = {};
 
-    //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
-    //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
-    for(var i = 0; i < splitItems.length; i++){
-        splitItems[i] = splitItems[i].replace("{", "");
-        currItemToParse = splitItems[i].split(",");
-         
-        overallItemInfo = splitItems[i];            
-        currID = getItemID(currItemToParse);
-        
-        if(currID != null) {
-            itemName = getItemName( currItemToParse );
-            quantity = getQuantity(currentItems, overallItemInfo);
-            specialInstructions = getSpecialInstructions(currItemToParse);
-            price = getPrice(currItemToParse);
-            
-            if(!itemsAddedBlacklist.includes("id:" + currID + " " + specialInstructions))
-            {
-                addItemToSideOrder(itemName, quantity, price);
-                itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
-            }
+    for (var i = currentItems.length - 1; i >= 0; i--) {
+        var itemID = currentItems[i]["id"];
+        var itemName = currentItems[i]["item-name"];
+        var specialInstructions = currentItems[i]["special-instructions"];
+        var price = currentItems[i]["price"];
+
+        var quantKey = itemID + "-" + specialInstructions; //e.g., 1-Hush Puppies, or simply 1- with no instructions
+
+        // Hack, creates new json objects to store original items with no duplicates, instead using quantity values.
+        if (!distinctItems[quantKey]) {
+            distinctItems[quantKey] = {
+                "id": itemID,
+                "item-name": itemName,
+                "special-instructions": specialInstructions,
+                "price": price,
+                "quantity": 0
+            };
         }
-        
+
+        distinctItems[quantKey]["quantity"]++;
     }
-}
 
-function getItemName( itemToParse ) {
-    var itemName = "item-name:";
-    for( var i = 0; i < itemToParse.length; i++ ) {
-        if( itemToParse[i].includes( itemName ) ) {
-            return itemToParse[i].substr( itemName.length )
-        }
-    }
-}
-
-function getPrice(itemToParse){
-    for(var j = 0; j < itemToParse.length; j++){
-        if(itemToParse[j].includes("price:")){
-            return itemToParse[j].replace("price:", ""); 
-        }
-    }
-}
-
- function getSpecialInstructions(itemToParse){
-     var specialInstruc = "special-instructions:"
-     for(var j = 0; j < itemToParse.length; j++){
-         if(itemToParse[j].includes("special-instructions:")){
-             return itemToParse[j].substr(specialInstruc.length); //removes special instructions text and returns 
-         }
-     }
- }
- 
- function getQuantity(currentItems, itemInfo){
-     var tempQuantityCheck = currentItems.split(itemInfo);
-     
-     return tempQuantityCheck.length - 1;
- }
-
-//Parses the item for an ID
-function getItemID(itemToParse){
-    for(var j = 0; j < itemToParse.length; j++){
-        if(itemToParse[j].includes("id:")){
-            tempID = itemToParse[j].split(":");
-            tempID = tempID[1].replace(",", "");
-
-            return tempID; //ID of the item
-        }
+    // Creates an item display for it once all the info is found, as well as updates the overall total
+    for (var key in distinctItems) {
+        addItemToSideOrder(distinctItems[key]["item-name"], distinctItems[key]["quantity"], distinctItems[key]["price"]);
     }
 }
 
@@ -236,7 +188,7 @@ function addItemToSideOrder( name, quantity, price ) {
     for( item of orderedItems ) {
         if( item.name == name ) {
             item.quantity = Number( item.quantity ) + Number( quantity );
-            item.total = Number( item.total ) + newCost;
+            item.total = Number( Number( item.total ) + newCost ).toFixed( 2 );
             added = true;
             updateItemInDisplay( item );
             break;
@@ -301,4 +253,34 @@ function addItemToDisplay( item ) {
     div.appendChild( p1 );
     div.appendChild( p2 );
     div.appendChild( p3 );
+}
+
+function editOrder() {
+    window.location.assign("edit-order.html");
+}
+
+function submitOrder(){
+    //move items from current-items to past-items and then clears current-items
+    var currentItemsRaw = sessionStorage.getItem("current-items");
+
+    if(currentItemsRaw){
+        var newlyAddedToPastItems = JSON.parse(currentItemsRaw);
+
+        var pastItemsRaw = sessionStorage.getItem("past-items");
+        var pastItems = [];
+
+        if (pastItemsRaw)
+            pastItems = JSON.parse(pastItemsRaw);
+
+        pastItems = pastItems.concat(newlyAddedToPastItems);
+
+        sessionStorage.setItem("past-items", JSON.stringify(pastItems));
+        sessionStorage.setItem("current-items", "");
+
+        //Just set a random thing to check in index, to make the modal popup
+        sessionStorage.setItem("placed-order", "1");
+
+        //Navigate back to home page
+        window.location.assign("index.html");
+    }
 }

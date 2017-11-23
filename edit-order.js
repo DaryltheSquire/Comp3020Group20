@@ -1,43 +1,42 @@
 $(document).ready(function(){ 
-    //when document is ready, open up session storage, go through each item and then display it
-    var currentItems = sessionStorage.getItem("current-items");
-    currentItems = currentItems.replace("[", "");
-    currentItems = currentItems.replace("]", "");
+    // when document is ready, open up session storage, go through each item and then display it
+    // if session storage doesn't have current items, don't do anything. (or, display message?)
+    var currentItemsRawData = sessionStorage.getItem("current-items");
 
-    var splitItems = currentItems.split("}");
-    var currItemToParse;
-    var currID;
-    var quantity;
-    var overallItemInfo;
-    var specialInstructions;
+    if (!currentItemsRawData)
+        return;
+    
+    var currentItems = JSON.parse(currentItemsRawData);
 
-    var itemsAddedBlacklist = [];
+    var distinctItems = {};
 
-    //Goes through each item, and parses it for its necessary ID / Instructions / Quantity / Price
-    //Afterwards creates an item display for it once all the info is found, as well as updates the overall total
-    for(var i = 0; i < splitItems.length; i++){
-        splitItems[i] = splitItems[i].replace("{", "");
-        currItemToParse = splitItems[i].split(",");
-         
-        overallItemInfo = splitItems[i];            
-        currID = getItemID(currItemToParse);
+    for (var i = currentItems.length - 1; i >= 0; i--) {
+        var itemID = currentItems[i]["id"];
+        var itemName = currentItems[i]["item-name"];
+        var specialInstructions = currentItems[i]["special-instructions"];
+        var price = currentItems[i]["price"];
 
-        if(currID != null) {
-            quantity = getQuantity(currentItems, overallItemInfo);
-            specialInstructions = getSpecialInstructions(currItemToParse);
-            price = getPrice(currItemToParse);
+        var quantKey = itemID + "-" + specialInstructions; //e.g., 1-Hush Puppies, or simply 1- with no instructions
 
-            if(!itemsAddedBlacklist.includes("id:" + currID + " " + specialInstructions))
-            {
-                alert(quantity + " stuff " + specialInstructions + " more stuff " + price);
-
-                displayItem(currID, quantity, specialInstructions, price);
-                itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
-            }
+        // Hack, creates new json objects to store original items with no duplicates, instead using quantity values.
+        if (!distinctItems[quantKey]) {
+            distinctItems[quantKey] = {
+                "id": itemID,
+                "item-name": itemName,
+                "special-instructions": specialInstructions,
+                "price": price,
+                "quantity": 0
+            };
         }
-        
+
+        distinctItems[quantKey]["quantity"]++;
     }
- });
+
+    // Creates an item display for it once all the info is found, as well as updates the overall total
+    for (var key in distinctItems) {
+        displayItem(distinctItems[key]["id"], distinctItems[key]["quantity"], distinctItems[key]["special-instructions"], distinctItems[key]["price"]);        
+    }
+});
  
 var nextID = 1;
 
@@ -77,66 +76,31 @@ function displayItem(itemID, quantity, specialInstructions, price){
     $("#quantity-" + newID).text(quantity);
 
     var itemTotal = parseFloat(Number(quantity) * Number(price)).toFixed(2);
-    $("#total-" + newID).text("Total: " + itemTotal + "$");
+    $("#total-" + newID).text("Total: $" + itemTotal);
 
     updateOverallTotal(itemTotal);
 }
- 
-function getPrice(itemToParse){
-    for(var j = 0; j < itemToParse.length; j++){
-        if(itemToParse[j].includes("price:")){
-            return itemToParse[j].replace("price:", ""); 
-        }
+
+function showIngredients(ingredients_block){
+    if($("#ingredients-" + ingredients_block).is(":visible")){
+        $("#ingredients-" + ingredients_block).hide();
+    }
+    else {
+        $("#ingredients-" + ingredients_block).show();
     }
 }
 
- function getSpecialInstructions(itemToParse){
-     var specialInstruc = "special-instructions:"
-     for(var j = 0; j < itemToParse.length; j++){
-         if(itemToParse[j].includes("special-instructions:")){
-             return itemToParse[j].substr(specialInstruc.length); //removes special instructions text and returns 
-         }
-     }
- }
+function showAllergies(allergy_block){
+    if($("#allergies-" + allergy_block).is(":visible")){
+        $("#allergies-" + allergy_block).hide();
+    }
+    else {
+        $("#allergies-" + allergy_block).show();
+    }
+}
  
- function getQuantity(currentItems, itemInfo){
-     var tempQuantityCheck = currentItems.split(itemInfo);
-     
-     return tempQuantityCheck.length - 1;
- }
- 
- //Parses the item for an ID
- function getItemID(itemToParse){
-     for(var j = 0; j < itemToParse.length; j++){
-         if(itemToParse[j].includes("id:")){
-             tempID = itemToParse[j].split(":");
-             tempID = tempID[1].replace(",", "");
- 
-             return tempID; //ID of the item
-         }
-     }
- }
- 
- function showIngredients(ingredients_block){
-     if($("#ingredients-" + ingredients_block).is(":visible")){
-         $("#ingredients-" + ingredients_block).hide();
-     }
-     else {
-         $("#ingredients-" + ingredients_block).show();
-     }
- }
- 
- function showAllergies(allergy_block){
-     if($("#allergies-" + allergy_block).is(":visible")){
-         $("#allergies-" + allergy_block).hide();
-     }
-     else {
-         $("#allergies-" + allergy_block).show();
-     }
- }
- 
- function addQuantity(quantity_element){
-     var currQuantity = parseInt($("#quantity-" + quantity_element).text());
+function addQuantity(quantity_element){
+    var currQuantity = parseInt($("#quantity-" + quantity_element).text());
  
     currQuantity++;
     $("#quantity-" + quantity_element).text(currQuantity);
@@ -150,7 +114,7 @@ function getPrice(itemToParse){
 
     currentOrder = currentOrder.replace("]", itemToAdd + "]");
     sessionStorage.setItem("current-items", currentOrder);
- }
+}
 
 function findActualIDOf(id){
     var normalID = "";
@@ -165,67 +129,72 @@ function findActualIDOf(id){
 
     return id;
 }
- 
+
 function createObjectOfItem(itemID, itemEditOrderID){
     var itemName = $("#name-" + itemEditOrderID).text();
     var specialInstructions = $("#special-instruc-" + itemEditOrderID).val();
     var price = $("#price-" + itemEditOrderID).text();
 
-    var item = "{id:" + itemID + ",item-name:" + itemName + ",special-instructions:" + specialInstructions + 
-    ",price:" + price + "}";
-
-    return item;
+    return ', {"id": '+ itemID + ', "item-name": "' + itemName + '", "special-instructions": "' + specialInstructions + '", "price": ' + price +'}';
 }
 
- function reduceQuantity(quantity_element){
-     var currQuantity = parseInt($("#quantity-" + quantity_element).text());
-     
-     if(currQuantity > 0){
-         currQuantity--;
+function reduceQuantity(quantity_element){
+    var currQuantity = parseInt($("#quantity-" + quantity_element).text());
+    
+    if(currQuantity > 0){
+        currQuantity--;
+        //also needs to delete one of the items from sessionstorage
+        var currentOrder = sessionStorage.getItem("current-items");
+        var itemID = findActualIDOf(quantity_element); //standard ID
+        var itemToAdd = createObjectOfItem(itemID, quantity_element); //item that gets added
+    
+        currentOrder = currentOrder.replace(itemToAdd, "");
+        sessionStorage.setItem("current-items", currentOrder);
+    }
 
-         //also needs to delete one of the items from sessionstorage
-         var currentOrder = sessionStorage.getItem("current-items");
-         var itemID = findActualIDOf(quantity_element); //standard ID
-         var itemToAdd = createObjectOfItem(itemID, quantity_element); //item that gets added
-     
-         currentOrder = currentOrder.replace(itemToAdd, "");
-         sessionStorage.setItem("current-items", currentOrder);
-     }
+    $("#quantity-" + quantity_element).text(currQuantity);
+    updateTotals(quantity_element, currQuantity);
+}
  
-     $("#quantity-" + quantity_element).text(currQuantity);
-     updateTotals(quantity_element, currQuantity);
- }
- 
- //Updates the total for that specific item
- function updateTotals(total_element, quantity){
-     var prevItemTotal = $("#total-" + total_element).text();
-     prevItemTotal = prevItemTotal.replace("Total: ", "");
-     prevItemTotal = prevItemTotal.replace("$", "");
-     prevItemTotal = parseFloat(prevItemTotal).toFixed(2);
- 
-     //Update item total
-     var itemTotal = parseFloat(quantity * parseFloat($("#price-" + total_element).text())).toFixed(2);
-     $("#total-" + total_element).text("Total: " + itemTotal + "$");
- 
-     var changedAmount = itemTotal - prevItemTotal; //Price difference from new total, from previous total
+//Updates the total for that specific item
+function updateTotals(total_element, quantity){
+    var prevItemTotal = $("#total-" + total_element).text();
+    prevItemTotal = prevItemTotal.replace("Total: ", "");
+    prevItemTotal = prevItemTotal.replace("$", "");
+    prevItemTotal = parseFloat(prevItemTotal).toFixed(2);
 
-     updateOverallTotal(changedAmount);
- }
- 
- //Updates the total for that specific item
- function updateOverallTotal(amountToChange){
-    var currentOverallTotal = parseFloat($("#total").text()).toFixed(2); //Current overall total
-    var newOverallTotal = parseFloat(Number(currentOverallTotal) + Number(amountToChange)).toFixed(2); //New overall total
+    //Update item total
+    var itemTotal = parseFloat(quantity * parseFloat($("#price-" + total_element).text())).toFixed(2);
+    $("#total-" + total_element).text("Total: $" + itemTotal);
 
-    $("#total").text(newOverallTotal);
+    var changedAmount = itemTotal - prevItemTotal; //Price difference from new total, from previous total
+    updateOverallTotal(changedAmount);
+}
+ 
+//Updates the total for that specific item
+function updateOverallTotal(amountToChange){
+   var currentOverallTotal = parseFloat($("#total").text()).toFixed(2); //Current overall total
+   var newOverallTotal = parseFloat(Number(currentOverallTotal) + Number(amountToChange)).toFixed(2); //New overall total
+   
+   $("#total").text(newOverallTotal);
 }
 
 function submitOrder(){
     //move items from current-items to past-items and then clears current-items
-    var currentItems = sessionStorage.getItem("current-items");
+    var currentItemsRaw = sessionStorage.getItem("current-items");
 
-    if(currentItems != null && currentItems != ""){
-        sessionStorage.setItem("past-items", currentItems);
+    if(currentItemsRaw){
+        var newlyAddedToPastItems = JSON.parse(currentItemsRaw);
+
+        var pastItemsRaw = sessionStorage.getItem("past-items");
+        var pastItems = [];
+
+        if (pastItemsRaw)
+            pastItems = JSON.parse(pastItemsRaw);
+
+        pastItems = pastItems.concat(newlyAddedToPastItems);
+
+        sessionStorage.setItem("past-items", JSON.stringify(pastItems));
         sessionStorage.setItem("current-items", "");
 
         //Just set a random thing to check in index, to make the modal popup

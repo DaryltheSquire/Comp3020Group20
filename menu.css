@@ -12,6 +12,7 @@ html, body {
 	width: 100%;
 	margin: 0px;
 	font-size: 14px;
+	min-width: 950px;
 }
 
 #header-dock {
@@ -141,6 +142,7 @@ input, label {
 	float: left;
 	margin-top: 3%;
 	margin-left: 5%;
+	max-width: 90%;
 	height: 85%;
 }
 
@@ -204,24 +206,15 @@ input, label {
 	margin-left: 2.5%;
 	position: static;
 	float: left;
+	justify-content: center;
 }
 
 #side-order-title-block {
 	text-align: center;
 	height: 5%;
-	border-bottom: thick solid;
+	/*border-bottom: thick solid;*/
 	margin-left: 3%;
 	margin-right: 3%;
-}
-
-#side-order-title {
-}
-
-#side-order-items-block {
-	overflow: auto;
-	height: 75%;
-
-	border-bottom: thick solid;
 }
 
 #toggle-ingredients, #toggle-allergies{
@@ -241,6 +234,9 @@ input, label {
 
 .side-order-items-block {
 	height: 75%;
+	overflow: auto;
+	border-bottom: thick solid;
+	border-top: thick solid;
 }
 
 .side-order-item {
@@ -249,6 +245,8 @@ input, label {
 	margin-left: 5%;
 	float: left;
 	border-bottom: thin solid;
+	font-size: 12.5px;
+	vertical-align: center;
 }
 
 .side-order-item-name {
@@ -257,7 +255,7 @@ input, label {
 
 .side-order-item-quantity {
 	float: left;
-	margin-left: 5%;
+	margin-left: 2%;
 	position: relative;
 }
 
@@ -293,26 +291,26 @@ input, label {
 }
 
 #side-order-buttons-block {
-	float: left;
-	margin-left: 8.5%;
+	position: relative;
+	margin: auto;
+	width: 100%;
+	text-align: center;
 }
 
 #side-order-edit-button {
-	float: left;
 }
 
 #side-order-submit-button {
-	float: right;
 }
 
 .darkGreenBackground {
-	background-color: #0A290A;
+	background-color: #0A390A;
 	color: #FFFFFF;
 	box-shadow: 10px 10px 5px #333333;
 }
 
 .darkGreenBackground:hover {
-	background-color: #1A391A;
+	background-color: #0A393A;
 }
 
 .roundedBorder {
@@ -322,4 +320,15 @@ input, label {
 .brickRedBackground {
 	background-color: #4F4F4F;
 	color: #FFFFFF;
+}
+
+/* Hide elements when screen changes */
+@media screen and ( max-width: 1200px ) {
+	#side-current-order {
+		display: none;
+	}
+
+	.menu-items-dock {
+		width: 99%;
+	}
 }

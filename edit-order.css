@@ -4,13 +4,13 @@ Basic style for the review and order screen
 -------------------------------------------------*/
 
 .darkGreenBackground {
-	background-color: #0A290A;
+	background-color: #0A390A;
 	color: #FFFFFF;
 	box-shadow: 10px 10px 5px #333333;
 }
 
 .darkGreenBackground:hover {
-	background-color: #1A391A;
+	background-color: #0A393A;
 }
 
 .roundedBorder {
@@ -32,6 +32,7 @@ html, body {
 	width: 100%;
 	margin: 0px;
 	font-size: 14px;
+	min-width: 900px;
 }
 
 #header-dock {
@@ -234,7 +235,6 @@ input, label {
 #bottom-dock {
     width: 100%;
     height: 12%;
-    background: grey;
 }
 
 #total-dock {

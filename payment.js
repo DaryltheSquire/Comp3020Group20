@@ -9,20 +9,25 @@ Global page variables
 
 var numberOfBills = 1;
 
+/*--------------------------------------------
+Document initialization
+--------------------------------------------*/
 $(document).ready(function(e) {
 	generateItemDivs();  
 
 	enableDraggableContainers();
 	enableDroppableContainers();
 
-	$("#add-new-bill-button").click(function(event) {
-		var newBill = createNewBill();
-		$("#add-new-bill-button").before(newBill);
-		enableDroppableContainers(); //must enable droppable on new items
+	$("#add-new-bill-button").click(function() {
+		createNewBill()
 	});
 
 	recalculateBillTotals();
 });
+
+/*--------------------------------------------
+Payment functions
+--------------------------------------------*/
 
 function enableDraggableContainers() {
 	$(".draggable").draggable({cursor: "crosshair", revert: "invalid"});
@@ -62,11 +67,11 @@ function generateItemDivs() {
 }
 
 function createNewBill() {
-	// generates a new layout that will hold the new bill container
 	numberOfBills++;
+	var billId = "bill" + numberOfBills;
 
-	var template_billContainer = 
-		'<div class="bill-container" id="bill-' + numberOfBills + '">\
+	var newBill = 
+		'<div class="bill-container last-created-bill" id="bill' + numberOfBills + '">\
 			<div class="bill-header">\
 				<div class="center-text-in-item">\
 					<p class="bill-header-title">Bill ' + numberOfBills + '</p>\
@@ -77,17 +82,26 @@ function createNewBill() {
 				<p class="bill-total-text">Bill ' + numberOfBills + ' total:</p><p class="bill-total-price-value">$0.00</p>\
 			</div>\
 		</div>'
-	return template_billContainer;
+
+	if (numberOfBills > 2) {
+		var previousBillName = "bill" + (numberOfBills - 1);
+		$("#" + previousBillName).removeClass("last-created-bill");
+	}
+
+	$("#add-new-bill-button").before(newBill);
+	enableDroppableContainers(); //must enable droppable on new items
 }
 
 //TODO: allow for deleting the last created bill
 function deleteBill() {
-	// add any items in this bill back to bill 1
+	// append any items in this bill back to bill 1
 
-	// recalculate any totals
 	recalculateBillTotals();
 
+	// add class last-created-bill to the new last element
+
 	// remove the bill div
+	numberOfBills--;
 }
 
 function recalculateBillTotals() {
@@ -101,4 +115,24 @@ function recalculateBillTotals() {
 
 		$(this).text('$' + billTotal.toFixed(2));
 	})
+}
+
+/*--------------------------------------------
+Button click functions
+--------------------------------------------*/
+
+function goBack() {
+	window.history.back();
+}
+
+function callWaiterForPayment() {
+    document.getElementById('call-payment-popup').style.display = "block";
+
+    setTimeout(function(){
+        $('#call-payment-popup').hide();
+    }, 5000);
+}
+
+function closeModal() {
+    $('#call-payment-popup').hide();
 }

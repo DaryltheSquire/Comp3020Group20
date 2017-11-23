@@ -9,11 +9,27 @@
 </head>
 <body>
 	<div id="header-dock" class="brickRedBackground">
-		<!-- TODO: need back button to go to the previous screen -->
+		<button id="button-go-back" onclick="goBack()">< Back to Menu</button>
+
 		<div class="center-text-in-item">
 			<h1 id="title-main">Payment</h1>
 		</div>
-		<!-- TODO: add the call waiter to make payment button here, and have it display modal when clicked -->
+
+		<button id="button-call-payment" onclick="callWaiterForPayment()">Tap here when you're ready to pay!</button>
+	</div>
+
+	<div id="call-payment-popup" class="modal">
+		<div class="modal-display">
+			<span class="close" onclick="closeModal()">&times;</span>
+			<p>Thanks!</p>
+			<p>	
+				We hope you enjoyed your meal! <br />
+				<br />
+				Someone will be with you shortly to take your payment via card or cash.<br />
+				<br />
+				Thank you for choosing Alice's Burgers!<br />	
+			</p>
+		</div>
 	</div>
 
 	<div id="content">
@@ -46,16 +62,15 @@
 
 			<div class="bill-container" id="add-new-bill-button">
 				<div class="center-text-in-item">
-					<!-- TODO: when tapped, this should create a new bill -->
 					<h3>Tap here to add a separate bill</h3>
 				</div>
+				<div class="hidden-fix"><p>.</p></div>
 			</div>
 		</div>
 	</div>
 
 	<div id="footer-dock" class="brickRedBackground">
 		<span class="total-all-bills"></span>
-		<span id="call-waiter-for-payment-button"></span>
 	</div>
 </body>
 </html>
