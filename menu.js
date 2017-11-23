@@ -303,3 +303,23 @@ function addItemToDisplay( item ) {
     div.appendChild( p2 );
     div.appendChild( p3 );
 }
+
+function editOrder() {
+    window.location.assign("edit-order.html");
+}
+
+function submitOrder(){
+    //move items from current-items to past-items and then clears current-items
+    var currentItems = sessionStorage.getItem("current-items");
+
+    if(currentItems != null && currentItems != ""){
+        sessionStorage.setItem("past-items", currentItems);
+        sessionStorage.setItem("current-items", "");
+
+        //Just set a random thing to check in index, to make the modal popup
+        sessionStorage.setItem("placed-order", "1");
+
+        //Navigate back to home page
+        window.location.assign("index.html");
+    }
+}
