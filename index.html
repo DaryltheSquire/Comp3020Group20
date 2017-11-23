@@ -12,64 +12,63 @@
 	<div id="submit-order-popup" class="modal">
 		<div class="modal-display">
 			<span class="close" onclick="closeModal()">&times;</span>
-			<p>Your Order Has Been Placed</p>
-			<p>	
-				Your order should arrive in 25-35minutes, and earlier for any appetizers <br />
-				<br />
-				Once you are ready to pay, hit the View Bill button, and split up the bill as you so choose, 
-				and we'll handle the rest. <br />
-				<br />
-				If you have any problems or concerns with your order, or any issues in general press the 
-				"Call for Help" button in the top right, and someone will be with you shortly. <br />
-				<br />
-				Thank you for choosing Alice's Burgers<br />	
+			<p id="modal-text">Your Order Has Been Placed and will arrive in 25-30minutes.</p>	
 			</p>
 		</div>
 	</div>
 	
+	<div id="help-req-popup" class="modal">
+		<div class="modal-display">
+			<span class="close" onclick="closeModal()">&times;</span>
+			<p id="modal-text">Help Requested. Someone will be with you shortly.</p>	
+			</p>
+		</div>
+	</div>
+
 	<div id="header-dock">
 		<div class="brickRedBackground" id="title-holder">
 			<h1 id="title-main">Welcome to Alice's Burgers!</h1>
 		</div>
 	</div>
 
-	<div id="main-menu-grid-container">
+	<div id="main-menu-grid-container" class="roundedBorder">
 
 	<a href="menu.html?menu=Appetizers" class="grid-link">
-		<span class="grid-item">
+		<span class="grid-item roundedBorder darkGreenBackground">
 			<p>Appetizers</p>
 		</span>
 	</a>
 	<a href="menu.html?menu=Hamburgers" class="grid-link">
-		<span class="grid-item">
+		<span class="grid-item roundedBorder darkGreenBackground">
 			<p>Hamburgers</p>
 		</span>
 	</a>
 	<a href="menu.html?menu=Sandwiches" class="grid-link">
-		<span class="grid-item">
+		<span class="grid-item roundedBorder darkGreenBackground">
 			<p>Sandwiches</p>
 		</span>
 	</a>
 	<a href="menu.html?menu=Sides" class="grid-link">
-		<span class="grid-item">
+		<span class="grid-item roundedBorder darkGreenBackground">
 			<p>Sides</p>
 		</span>
 	</a>
 	<a href="menu.html?menu=Drinks" class="grid-link">
-		<span class="grid-item">
+		<span class="grid-item roundedBorder darkGreenBackground">
 			<p>Drinks</p>
 		</span>
 	</a>
 	<a href="menu.html?menu=Desserts" class="grid-link">
-		<span class="grid-item">
+		<span class="grid-item roundedBorder darkGreenBackground">
 			<p>Desserts</p>
 		</span>
 	</a>
 		
 	</div>
-	<div id="button-dock">
-		<button id="button-call-for-help">Call for Help</button>
-		<a href="payment.html"><button id="button-pay-for-order">View Bill</button></a>
+
+	<div id="button-dock" class="brickRedBackground">
+		<button id="button-call-for-help" onclick="callForHelp()">Call for Help</button>
+		<button id="button-pay-for-order" onclick="payForOrderScreen()">View Bill</button>
 	</div>
 </body>
 </html>
