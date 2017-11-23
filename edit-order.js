@@ -22,6 +22,7 @@ $(document).ready(function(){
         if (!distinctItems[quantKey]) {
             distinctItems[quantKey] = {
                 "id": itemID,
+                "item-name": itemName,
                 "special-instructions": specialInstructions,
                 "price": price,
                 "quantity": 0
