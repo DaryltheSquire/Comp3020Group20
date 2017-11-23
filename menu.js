@@ -119,7 +119,7 @@ function addToOrder(itemNumber){
 
     for(var i = 0; i < quantity; i++){
         itemName = $("#name-" + itemNumber).text();
-        specialInstructions = $("#special-instruc-" + itemNumber).val().replace("\"", "'");
+        specialInstructions = sanitizeSpecialInstructions($("#special-instruc-" + itemNumber).val());
         price = $("#price-" + itemNumber).text();
 
         currItem = 
@@ -152,6 +152,15 @@ function addToOrder(itemNumber){
 
     sessionStorage.setItem(itemNumber, itemAsHTML);
     //needs a way to update the side order tab
+}
+
+function sanitizeSpecialInstructions(instructions) {
+    instructions = instructions.replace("\"", "'");
+    instructions = instructions.replace("\t", " ");
+    instructions = instructions.replace("\n", " ");
+    instructions = instructions.trim();
+
+    return instructions;
 }
 
 function resetItemAfterOrder(itemID){

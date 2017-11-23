@@ -30,7 +30,18 @@ Payment functions
 --------------------------------------------*/
 
 function enableDraggableContainers() {
-	$(".draggable").draggable({helper: "clone", cursor: "crosshair", revert: "invalid", appendTo: "body"});
+	$(".draggable").draggable({
+		helper: "clone", 
+		cursor: "crosshair", 
+		revert: "invalid", 
+		appendTo: "body",
+		start: function(event, ui) {
+			$(this).draggable('instance').offset.click = {
+	            left: Math.floor(ui.helper.width() / 2),
+	            top: Math.floor(ui.helper.height() / 2)
+          	}
+		}
+	})
 }
 
 function enableDroppableContainers() {
