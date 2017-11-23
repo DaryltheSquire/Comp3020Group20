@@ -101,16 +101,17 @@ function createNewBill() {
 	enableDroppableContainers(); //must enable droppable on new items
 }
 
-//TODO: allow for deleting the last created bill
-function deleteBill() {
-	// append any items in this bill back to bill 1
+function deleteLastBill() {
+	if (numberOfBills > 1) {
+		numberOfBills--;
+		$(".last-created-bill").find(".food-item").appendTo("#initial-container");
+		$(".last-created-bill").remove();
 
-	recalculateBillTotals();
-
-	// add class last-created-bill to the new last element
-
-	// remove the bill div
-	numberOfBills--;
+		if (numberOfBills > 1)
+			$("#add-new-bill-button").prev().addClass("last-created-bill");
+		
+		recalculateBillTotals();
+	}
 }
 
 function recalculateBillTotals() {
