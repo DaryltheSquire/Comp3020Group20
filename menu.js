@@ -261,10 +261,20 @@ function editOrder() {
 
 function submitOrder(){
     //move items from current-items to past-items and then clears current-items
-    var currentItems = sessionStorage.getItem("current-items");
+    var currentItemsRaw = sessionStorage.getItem("current-items");
 
-    if(currentItems != null && currentItems != ""){
-        sessionStorage.setItem("past-items", currentItems);
+    if(currentItemsRaw){
+        var newlyAddedToPastItems = JSON.parse(currentItemsRaw);
+
+        var pastItemsRaw = sessionStorage.getItem("past-items");
+        var pastItems = [];
+
+        if (pastItemsRaw)
+            pastItems = JSON.parse(pastItemsRaw);
+
+        pastItems = pastItems.concat(newlyAddedToPastItems);
+
+        sessionStorage.setItem("past-items", JSON.stringify(pastItems));
         sessionStorage.setItem("current-items", "");
 
         //Just set a random thing to check in index, to make the modal popup
