@@ -76,7 +76,7 @@ function displayItem(itemID, quantity, specialInstructions, price){
     $("#quantity-" + newID).text(quantity);
 
     var itemTotal = parseFloat(Number(quantity) * Number(price)).toFixed(2);
-    $("#total-" + newID).text("Total: " + itemTotal + "$");
+    $("#total-" + newID).text("Total: $" + itemTotal);
 
     updateOverallTotal(itemTotal);
 }
@@ -165,7 +165,7 @@ function updateTotals(total_element, quantity){
 
     //Update item total
     var itemTotal = parseFloat(quantity * parseFloat($("#price-" + total_element).text())).toFixed(2);
-    $("#total-" + total_element).text("Total: " + itemTotal + "$");
+    $("#total-" + total_element).text("Total: $" + itemTotal);
 
     var changedAmount = itemTotal - prevItemTotal; //Price difference from new total, from previous total
     updateOverallTotal(changedAmount);
