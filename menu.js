@@ -147,7 +147,8 @@ function addToOrder(itemNumber){
     //Gets the current item, and saves the layout in sessionStorage
     var itemAsHTML = document.getElementById("item-"+itemNumber).outerHTML;
 
-    resetItemAfterOrder(itemNumber);
+    if( quantity > 0 )
+        resetItemAfterOrder(itemNumber);
 
     sessionStorage.setItem(itemNumber, itemAsHTML);
     //needs a way to update the side order tab
