@@ -142,6 +142,7 @@ input, label {
 	float: left;
 	margin-top: 3%;
 	margin-left: 5%;
+	max-width: 90%;
 	height: 85%;
 }
 

@@ -108,6 +108,8 @@ function addToOrder(itemNumber){
             '{"id": '+ itemNumber + ', "item-name": "' + itemName + '", "special-instructions": "' + specialInstructions + '", "price": ' + price +'}';
 
         // Add comma before currItem there are already items in the list, for JSON compatibility
+        if (!currentItems)
+            currentItems = "[]";
         if (currentItems === "[]"){
             currentItems = currentItems.slice(0, -1); // remove the last bracket
             currentItems += currItem + "]"; // add current item then re-add the array end bracket
