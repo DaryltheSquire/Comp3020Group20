@@ -212,7 +212,7 @@ input, label {
 #side-order-title-block {
 	text-align: center;
 	height: 5%;
-	border-bottom: thick solid;
+	/*border-bottom: thick solid;*/
 	margin-left: 3%;
 	margin-right: 3%;
 }
@@ -236,6 +236,7 @@ input, label {
 	height: 75%;
 	overflow: auto;
 	border-bottom: thick solid;
+	border-top: thick solid;
 }
 
 .side-order-item {
@@ -244,6 +245,8 @@ input, label {
 	margin-left: 5%;
 	float: left;
 	border-bottom: thin solid;
+	font-size: 12.5px;
+	vertical-align: center;
 }
 
 .side-order-item-name {
@@ -252,7 +255,7 @@ input, label {
 
 .side-order-item-quantity {
 	float: left;
-	margin-left: 5%;
+	margin-left: 2%;
 	position: relative;
 }
 

@@ -188,7 +188,7 @@ function addItemToSideOrder( name, quantity, price ) {
     for( item of orderedItems ) {
         if( item.name == name ) {
             item.quantity = Number( item.quantity ) + Number( quantity );
-            item.total = Number( item.total ) + newCost;
+            item.total = Number( Number( item.total ) + newCost ).toFixed( 2 );
             added = true;
             updateItemInDisplay( item );
             break;
