@@ -1,6 +1,24 @@
 var orderedItems = [];  // Store in ram when page remains loaded.
 var orderTotal = 0.00;
 
+function callForHelp() {
+    document.getElementById('help-req-popup').style.display = "block";
+
+    setTimeout(function(){
+        $('#help-req-popup').hide();
+    }, 5000);
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('help-req-popup')) {
+        $('#help-req-popup').hide();
+    }
+}
+
+function closeModal() {
+    $('#help-req-popup').hide();
+}
+
 $(document).ready(function(){ 
     var url_string = window.location.href;
     var url = new URL(url_string);

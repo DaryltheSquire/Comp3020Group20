@@ -136,8 +136,8 @@ Bottom/Footer Dock
     padding: 20px;
     background-color: #fefefe;
     border: 1px solid #888;
-	width: 40%;
-	height: 30%;
+	width: 30%;
+	height: 10%;
 }
 
 .close {
@@ -152,4 +152,9 @@ Bottom/Footer Dock
     color: black;
     text-decoration: none;
     cursor: pointer;
+}
+
+#modal-text {
+	font-size: 15px;
+	font-weight: bold;
 }
