@@ -183,12 +183,13 @@ function addItemToSideOrder( name, quantity, price ) {
     var item;
     var added = false;
 
-    var newCost = Number( price * quantity );
+    var newCost = Number( price * quantity ).toFixed( 2 );
 
     for( item of orderedItems ) {
         if( item.name == name ) {
+            var newTotal = Number( item.total ) + Number( newCost );
             item.quantity = Number( item.quantity ) + Number( quantity );
-            item.total = Number( Number( item.total ) + newCost ).toFixed( 2 );
+            item.total = Number( newTotal ).toFixed( 2 );
             added = true;
             updateItemInDisplay( item );
             break;
@@ -196,7 +197,7 @@ function addItemToSideOrder( name, quantity, price ) {
     }
 
     if( !added ) {
-        item = orderedItem( name, quantity, price );  
+        item = orderedItem( name, quantity, price );
         addItemToDisplay( item );
         orderedItems.push( item );
     }
@@ -210,7 +211,7 @@ function orderedItem( name, quantity, price ) {
 }
 
 function updateSideTotal( amountToChangeBy ) {
-    orderTotal += amountToChangeBy;
+    orderTotal += Number( amountToChangeBy );
     $( "#side-order-total-amount" ).text( Number( orderTotal ).toFixed( 2 ) );
 }
 
@@ -248,7 +249,7 @@ function addItemToDisplay( item ) {
     var p3 = document.createElement("P");
     p3.id = p3_id;
     p3.className = "side-order-item-cost";
-    p3.textContent = "$" + item.total;
+    p3.textContent = "$" + Number( item.total ).toFixed( 2 );
 
     div.appendChild( p1 );
     div.appendChild( p2 );
