@@ -204,3 +204,21 @@ function submitOrder(){
         window.location.assign("index.html");
     }
 }
+
+function callForHelp() {
+    document.getElementById('help-req-popup').style.display = "block";
+
+    setTimeout(function(){
+        $('#help-req-popup').hide();
+    }, 5000);
+}
+
+window.onclick = function(event) {
+    if (event.target == document.getElementById('help-req-popup')) {
+        $('#help-req-popup').hide();
+    }
+}
+
+function closeModal() {
+    $('#help-req-popup').hide();
+}
