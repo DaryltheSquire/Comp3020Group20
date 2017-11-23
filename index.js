@@ -31,7 +31,6 @@ function displayModal(){
 }
 
 function payForOrderScreen(){
-    //Navigate back to home page
     window.location.assign("payment.html");
 }
 

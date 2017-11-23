@@ -119,7 +119,7 @@ function addToOrder(itemNumber){
 
     for(var i = 0; i < quantity; i++){
         itemName = $("#name-" + itemNumber).text();
-        specialInstructions = $("#special-instruc-" + itemNumber).val();
+        specialInstructions = $("#special-instruc-" + itemNumber).val().replace("\"", "'");
         price = $("#price-" + itemNumber).text();
 
         currItem = 

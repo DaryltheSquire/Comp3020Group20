@@ -30,7 +30,7 @@ Payment functions
 --------------------------------------------*/
 
 function enableDraggableContainers() {
-	$(".draggable").draggable({cursor: "crosshair", revert: "invalid"});
+	$(".draggable").draggable({helper: "clone", cursor: "crosshair", revert: "invalid", appendTo: "body"});
 }
 
 function enableDroppableContainers() {
@@ -52,18 +52,27 @@ function enableDroppableContainers() {
 	$(".drop").sortable();
 }
 
-//TODO: call this at page load to generate all items
 function generateItemDivs() {
 	var currentItemIndex = 0;
-	// read data from session query
-	// create a new div for this and put it in bill 1's container
-	// do this for all items in session storage
 
-	var item_template = 
-		'<div class="draggable food-item" id="item-1" data-price="200.00">\
-			<p class="item-name">Item 1</p>\
-			<p class="item-price">$200.00</p>\
-		</div>'
+	var pastItemsRaw = sessionStorage.getItem("past-items");
+
+	if (!pastItemsRaw)
+		showNoItemsModal();
+
+	var pastItems = JSON.parse(pastItemsRaw);
+
+	for (var i = 0; i < pastItems.length; i++) {
+		console.log(pastItems[i]);
+		var newItem = 
+			'<div class="draggable food-item" data-price="' + pastItems[i]["price"] + '">' +
+				'<p class="item-name">' + pastItems[i]["item-name"] + '</p>' +
+				'<p class="item-instructions">' + pastItems[i]["special-instructions"] + '</p>' +
+				'<p class="item-price">$' + parseFloat(pastItems[i]["price"], 10).toFixed(2) + '</p>' +
+			'</div>';
+
+		$('#initial-container').append(newItem);
+	}
 }
 
 function createNewBill() {
@@ -92,16 +101,17 @@ function createNewBill() {
 	enableDroppableContainers(); //must enable droppable on new items
 }
 
-//TODO: allow for deleting the last created bill
-function deleteBill() {
-	// append any items in this bill back to bill 1
+function deleteLastBill() {
+	if (numberOfBills > 1) {
+		numberOfBills--;
+		$(".last-created-bill").find(".food-item").appendTo("#initial-container");
+		$(".last-created-bill").remove();
 
-	recalculateBillTotals();
-
-	// add class last-created-bill to the new last element
-
-	// remove the bill div
-	numberOfBills--;
+		if (numberOfBills > 1)
+			$("#add-new-bill-button").prev().addClass("last-created-bill");
+		
+		recalculateBillTotals();
+	}
 }
 
 function recalculateBillTotals() {
@@ -133,6 +143,10 @@ function callWaiterForPayment() {
     }, 5000);
 }
 
-function closeModal() {
+function showNoItemsModal() {
+    document.getElementById('no-past-items-popup').style.display = "block";
+}
+
+function closeCallPaymentModal() {
     $('#call-payment-popup').hide();
 }

@@ -20,7 +20,7 @@
 
 	<div id="call-payment-popup" class="modal">
 		<div class="modal-display">
-			<span class="close" onclick="closeModal()">&times;</span>
+			<span class="close" onclick="closeCallPaymentModal()">&times;</span>
 			<p>Thanks!</p>
 			<p>	
 				We hope you enjoyed your meal! <br />
@@ -29,6 +29,18 @@
 				<br />
 				Thank you for choosing Alice's Burgers!<br />	
 			</p>
+		</div>
+	</div>
+
+	<div id="no-past-items-popup" class="modal">
+		<div class="modal-display">
+			<p>	
+				It doesn't look like you've made any orders! <br />
+				<br />
+				You should go back to the menu and choose some tasty items to eat!<br />
+				<br />
+			</p>
+			<button class="button-go-back" onclick="goBack()">Take me back to the menu!</span>
 		</div>
 	</div>
 
@@ -43,18 +55,7 @@
 						<p class="bill-header-title">Bill 1</p>
 					</div>
 				</div>
-				<div class="item-container drop">
-					<!-- contains draggable items, generated on page load from session information -->
-					<!-- TODO: remove these placeholder items once item generation is working -->
-					<div class="draggable food-item" id="item-1" data-price="200.00">
-						<p class="item-name">Item 1</p>
-						<p class="item-price">$200.00</p>
-					</div>
-					<div class="draggable food-item" id="item-2" data-price="100.00">
-						<p class="item-name">Item 2</p>
-						<p class="item-price">$100.00</p>
-					</div>
-				</div>
+				<div class="item-container drop" id="initial-container"></div>
 				<div class="bill-footer center-left-text-in-item">
 					<p class="bill-total-text">Bill 1 total: </p><p class="bill-total-price-value">$0.00</p>
 				</div>
@@ -70,7 +71,7 @@
 	</div>
 
 	<div id="footer-dock" class="brickRedBackground">
-		<span class="total-all-bills"></span>
+		<button id="button-call-payment" onclick="deleteLastBill()">Delete last created bill</button>
 	</div>
 </body>
 </html>
