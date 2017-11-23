@@ -3,7 +3,7 @@ $(document).ready(function(){
     // if session storage doesn't have current items, don't do anything. (or, display message?)
     var currentItemsRawData = sessionStorage.getItem("current-items");
 
-    if (currentItemsRawData === null)
+    if (!currentItemsRawData)
         return;
     
     var currentItems = JSON.parse(currentItemsRawData);
