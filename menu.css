@@ -12,6 +12,7 @@ html, body {
 	width: 100%;
 	margin: 0px;
 	font-size: 14px;
+	min-width: 950px;
 }
 
 #header-dock {
@@ -204,6 +205,7 @@ input, label {
 	margin-left: 2.5%;
 	position: static;
 	float: left;
+	justify-content: center;
 }
 
 #side-order-title-block {
@@ -285,16 +287,16 @@ input, label {
 }
 
 #side-order-buttons-block {
-	float: left;
-	margin-left: 8.5%;
+	position: relative;
+	margin: auto;
+	width: 100%;
+	text-align: center;
 }
 
 #side-order-edit-button {
-	float: left;
 }
 
 #side-order-submit-button {
-	float: right;
 }
 
 .darkGreenBackground {
@@ -314,4 +316,15 @@ input, label {
 .brickRedBackground {
 	background-color: #4F4F4F;
 	color: #FFFFFF;
+}
+
+/* Hide elements when screen changes */
+@media screen and ( max-width: 1200px ) {
+	#side-current-order {
+		display: none;
+	}
+
+	.menu-items-dock {
+		width: 99%;
+	}
 }
