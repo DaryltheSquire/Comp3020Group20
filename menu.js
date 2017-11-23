@@ -139,8 +139,6 @@ function resetItemAfterOrder(itemID){
     $("#total-" + itemID).text("Total: 0.00$");
 }
 
-var orderedItems = [];
-
 function loadItemsToSide() {
     //when document is ready, open up session storage, go through each item and then display it
     var currentItemsRaw = sessionStorage.getItem("current-items");
@@ -177,8 +175,6 @@ function loadItemsToSide() {
     for (var key in distinctItems) {
         addItemToSideOrder(distinctItems[key]["item-name"], distinctItems[key]["quantity"], distinctItems[key]["price"]);
     }
-        
-    
 }
 
 function addItemToSideOrder( name, quantity, price ) {
