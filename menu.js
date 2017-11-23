@@ -174,7 +174,7 @@ function loadItemsToSide() {
             specialInstructions = getSpecialInstructions(currItemToParse);
             price = getPrice(currItemToParse);
             
-            if(!itemsAddedBlacklist.includes("quantity:" + quantity + " " + specialInstructions))
+            if(!itemsAddedBlacklist.includes("id:" + currID + " " + specialInstructions))
             {
                 addItemToSideOrder(itemName, quantity, price);
                 itemsAddedBlacklist.push("quantity:" + quantity + " " + specialInstructions);
@@ -250,7 +250,7 @@ function addItemToSideOrder( name, quantity, price ) {
         orderedItems.push( item );
     }
 
-    updateTotal( newCost );
+    updateSideTotal( newCost );
 }
 
 function orderedItem( name, quantity, price ) {
@@ -258,7 +258,7 @@ function orderedItem( name, quantity, price ) {
     return item;
 }
 
-function updateTotal( amountToChangeBy ) {
+function updateSideTotal( amountToChangeBy ) {
     orderTotal += amountToChangeBy;
     $( "#side-order-total-amount" ).text( Number( orderTotal ).toFixed( 2 ) );
 }

@@ -214,16 +214,6 @@ input, label {
 	margin-right: 3%;
 }
 
-#side-order-title {
-}
-
-#side-order-items-block {
-	overflow: auto;
-	height: 75%;
-
-	border-bottom: thick solid;
-}
-
 #toggle-ingredients, #toggle-allergies{
 	background: none;
 	margin: 0px;
@@ -241,6 +231,8 @@ input, label {
 
 .side-order-items-block {
 	height: 75%;
+	overflow: auto;
+	border-bottom: thick solid;
 }
 
 .side-order-item {
