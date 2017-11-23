@@ -80,7 +80,7 @@ function updateTotal(total_element, quantity){
     each new item removes the ], adds a ", " then the new items with a ] ending
 */
 function addToOrder(itemNumber){
-    /*  add quantity number of those items to the cookies
+    /*  add quantity number of those items to the session storage
         id is itemNumber
         item-name is gotten by $("#name-" + itemNumber)
         special-instructions is by $("#special-instruc-" + itemNumber)
@@ -104,16 +104,17 @@ function addToOrder(itemNumber){
         specialInstructions = $("#special-instruc-" + itemNumber).val();
         price = $("#price-" + itemNumber).text();
 
-        currItem = "{id:" + itemNumber + ",item-name:" + itemName + ",special-instructions:" + specialInstructions + 
-        ",price:" + price + "}";
+        currItem = 
+            '{"id": '+ itemNumber + ', "item-name": "' + itemName + '", "special-instructions": "' + specialInstructions + '", "price": ' + price +'}';
 
-        if(currentItems === "[]"){
-            currentItems = currentItems.slice(0, -1);
-            currentItems += currItem + "]";
+        // Add comma before currItem there are already items in the list, for JSON compatibility
+        if (currentItems === "[]"){
+            currentItems = currentItems.slice(0, -1); // remove the last bracket
+            currentItems += currItem + "]"; // add current item then re-add the array end bracket
         }
         else {
             currentItems = currentItems.slice(0, -1);
-            currentItems += currItem + "]";
+            currentItems += ", " + currItem + "]";
         }
 
         if( i == 0 ) {
