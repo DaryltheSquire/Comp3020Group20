@@ -76,7 +76,7 @@ function generateItemDivs() {
 	for (var i = 0; i < pastItems.length; i++) {
 		console.log(pastItems[i]);
 		var newItem = 
-			'<div class="draggable food-item" data-price="' + pastItems[i]["price"] + '">' +
+			'<div class="draggable food-item roundedBorder darkGreenBackground" data-price="' + pastItems[i]["price"] + '">' +
 				'<p class="item-name">' + pastItems[i]["item-name"] + '</p>' +
 				'<p class="item-instructions">' + pastItems[i]["special-instructions"] + '</p>' +
 				'<p class="item-price">$' + parseFloat(pastItems[i]["price"], 10).toFixed(2) + '</p>' +
